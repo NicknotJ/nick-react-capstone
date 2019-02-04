@@ -1,0 +1,22 @@
+.registerContainer {
+    display: inline-block;
+    /*Temp Solution */
+    margin-left: 22%;
+    background-color: blue;
+    text-align: center;
+    width: 20%;
+}
+
+input {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+button{
+    margin-bottom: 5%;
+}

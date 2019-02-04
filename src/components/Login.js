@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import './Login.css';
 import Input from './Input';
 import {reduxForm, Field } from 'redux-form';
-import {required, lengthRequirements} from '../validators/user';
+import {required, lengthRequirements, noWhiteSpace} from '../validators/user';
 const passwordLength = lengthRequirements({min: 7, max: 43});
 const usernameLength = lengthRequirements({min: 2, max: 31});
 export class Login extends Component{
     onSubmit(values) {
         const {username, password} = values;
-        const user = {username, password};
-        console.log(`username: ${values.username} password: ${values.password}`)
+        const user = {username, password};    
+        fetch(`http://localhost:8080/api/auth/login`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        })
+        .then(result => console.log(result))
     }
     render() {
     return(
@@ -17,9 +22,9 @@ export class Login extends Component{
           <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
             <h5>Login</h5>
             <label htmlFor='username'>Username</label>
-            <Field component={Input} type='username' name='username' element='input' validate={[required, usernameLength]} />
+            <Field component={Input} type='username' name='username' element='input' validate={[required, usernameLength, noWhiteSpace]} />
             <label htmlFor='newPassword'>New Password</label>
-            <Field component={Input} type='password' name='password' element='input' validate={[required, passwordLength]} />
+            <Field component={Input} type='password' name='password' element='input' validate={[required, passwordLength, noWhiteSpace]} />
             <button type='submit'>Confirm</button>
           </form>
         </div>

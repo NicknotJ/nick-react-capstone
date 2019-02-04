@@ -9,3 +9,8 @@ export const lengthRequirements = length => value => {
     }
     return undefined;
 } 
+
+export const noWhiteSpace = value => {
+    let testValue = value.trim();
+    return testValue === value ? undefined : 'No whitespace at beginning or end'
+};

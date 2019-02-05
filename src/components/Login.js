@@ -7,6 +7,7 @@ const passwordLength = lengthRequirements({min: 7, max: 43});
 const usernameLength = lengthRequirements({min: 2, max: 31});
 export class Login extends Component{
     onSubmit(values) {
+        //this should probably all be dispatches and actions
         const {username, password} = values;
         const user = {username, password};    
         fetch(`http://localhost:8080/api/auth/login`, {

@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Journal.css';
 import Banner from './components/Banner';
 import StaticBody from './components/StaticBody';
 import Login from './components/Login';
 import Register from './components/Register';
+import { connect } from 'react-redux';
 
 
-class Journal extends Component {
+
+class Journal extends React.Component {
   render() {
     return (
       <div className="Journal">
@@ -19,4 +21,9 @@ class Journal extends Component {
   }
 }
 
-export default Journal;
+export const mapStateToProps = (state) => {
+  return {loggedIn: state.loggedIn};
+}
+
+
+export default connect(mapStateToProps)(Journal);

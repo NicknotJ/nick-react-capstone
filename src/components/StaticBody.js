@@ -1,5 +1,6 @@
 import React from 'react';
 import './StaticBody.css';
+
 export default function StaticBody(props){
 
 return (

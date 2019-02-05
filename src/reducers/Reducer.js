@@ -1,9 +1,9 @@
-/* import our actions*/
+import {userLoginSuccess, userLoginError, userLoginRequest} from '../actions/user';
 
 
 const initialState = {
     //Determines if user sees userpage or login/registration
-    loggedIn: true,
+    loggedIn: false,
     //Will help prevent multiple requests to server
     loading: false,
     //Purely for fluff. Do not rely on this
@@ -17,6 +17,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
     //if(action.type === SOMETHING){return STATE CHANGE}
-
+    if(action.type === 'USER_LOGIN_REQUEST'){
+        return Object.assign({}, state, {
+            loading: true
+        })
+    }
     return state;
 }

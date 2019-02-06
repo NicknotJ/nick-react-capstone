@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './Register.css';
 import Input from './Input';
+import { connect } from 'react-redux';
 import {reduxForm, Field } from 'redux-form';
 import {required, lengthRequirements, noWhiteSpace} from '../validators/user.js';
+import { userRegister } from '../actions/user.js';
 const passwordLength = lengthRequirements({min: 7, max: 43});
 const usernameLength = lengthRequirements({min: 2, max: 31});
 
@@ -12,13 +14,7 @@ export class Register extends Component{
         const username = values.newUsername;
         const password = values.newPassword;
         const newUser = {username, password};
-        fetch(`http://localhost:8080/api/users`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(newUser)
-        })
-        .then(response => response.json())
-        .then(res => console.log(res))
+        this.props.dispatch(userRegister(newUser));
     }
 
     render() {
@@ -36,6 +32,13 @@ export class Register extends Component{
     )
     }
 }
+
+const mapStateToProps = state => ({
+    loading: state.reducer.loading,
+    loggedIn: state.reducer.loggedIn
+});
+
+Register = connect(mapStateToProps)(Register);
 
 export default reduxForm({
     form: 'register'

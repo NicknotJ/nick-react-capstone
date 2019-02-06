@@ -4,7 +4,8 @@ import Input from './Input';
 import {connect} from 'react-redux';
 import {reduxForm, Field } from 'redux-form';
 import {required, lengthRequirements, noWhiteSpace} from '../validators/user';
-import {userLoginRequest} from '../actions/user';
+import {userLogin} from '../actions/user';
+
 const passwordLength = lengthRequirements({min: 7, max: 43});
 const usernameLength = lengthRequirements({min: 2, max: 31});
 
@@ -12,20 +13,11 @@ export class Login extends Component{
     onSubmit(values) {
         //this should probably all be dispatches and actions
         const {username, password} = values;
-        const user = {username, password};  
-        this.props.dispatch(userLoginRequest())
-        fetch(`http://localhost:8080/api/auth/login`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(user)
-        })
-        .then(result => console.log(result))
+        const user = {username, password};
+        console.log('I, the login, ran');
+        this.props.dispatch(userLogin(user));
     }
 
-    // disabled(){
-    //     return this.props.loading ? disabled : '';
-    // }
-    
     render() {
     return(
         <div role="container" className="loginContainer">

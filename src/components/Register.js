@@ -16,7 +16,6 @@ export class Register extends Component{
         const newUser = {username, password};
         this.props.dispatch(userRegister(newUser));
     }
-
     render() {
     return(
         <div role="container" className="registerContainer">
@@ -25,7 +24,7 @@ export class Register extends Component{
             <label htmlFor='newUsername'>New UserName</label>
             <Field component={Input} type='text' name='newUsername' element='input' validate={[required, usernameLength, noWhiteSpace]}  />
             <label htmlFor='newPassword'>New Password</label>
-            <Field component={Input} type='text' name='newPassword' element='input' validate={[required, passwordLength, noWhiteSpace]} />
+            <Field component={Input} type='password' name='newPassword' element='input' validate={[required, passwordLength, noWhiteSpace]} />
             <button type='submit'>Confirm</button>
           </form>
         </div>

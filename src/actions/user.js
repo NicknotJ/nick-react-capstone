@@ -65,12 +65,13 @@ export const userRegister = newUser => dispatch => {
     })
     .then(response => {
         if(!response.ok){
+            console.log('rejecting the promise in userRegister');
             return Promise.reject(response.statusText);
         }
         response.json()})
-    .then(res => dispatch(userLoginSuccess(res.username)))
+    .then(res => dispatch(userLoginSuccess(newUser.username)))
     .catch(err => {
         console.log(err);
-        dispatch(userRegisterError(err))
+        dispatch(userLoginError(err))
 })
 }

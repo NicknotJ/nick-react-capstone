@@ -51,3 +51,43 @@ export const submitPain = pain => dispatch => {
         dispatch(submitPainError(error));
     })
 };
+
+export const REQUEST_PAIN_SUCCESS = 'REQUEST_PAIN_SUCCESS';
+export const requestPainSuccess = result => ({
+    type: REQUEST_PAIN_SUCCESS,
+    result
+});
+
+export const REQUEST_PAIN_FAILURE = 'REQUEST_PAIN_FAILURE';
+export const requestPainFailure = error => ({
+    type: REQUEST_PAIN_FAILURE,
+    error
+})
+
+//Security Issues
+export const requestPain = username => dispatch => {
+    dispatch(submitPainRequest())
+    return fetch(`${API_BASE_URL}/pain/?searchTerm=${username}`, {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json"
+      },
+    })
+    .then(res => {
+     if(!res.ok){
+           return Promise.reject(res)
+}
+        return res.json()
+    })
+    .then(result => {
+        console.log('The following is the result');
+        console.log(result);
+        dispatch(requestPainSuccess(result));
+        
+    })
+    .catch(error => {
+        // dispatch(requestPainError(error));
+        console.log(error);
+    })
+};
+

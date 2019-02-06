@@ -1,5 +1,6 @@
-//login and registration actions
- 
+import { API_BASE_URL } from '../config.js'
+//login and registration actions 
+
 export const USER_REQUEST = 'USER_LOGIN_REQUEST';
 export const userRequest = () => ({
     type: USER_REQUEST
@@ -21,7 +22,7 @@ export const userLoginError = error => ({
 
 export const userLogin = user => dispatch => {
     dispatch(userRequest());
-    fetch('http://localhost:8080/api/auth/login', {
+    fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user)
@@ -57,7 +58,7 @@ export const userRegisterError = error => ({
 
 export const userRegister = newUser => dispatch => {
     dispatch(userRequest());
-    fetch('http://localhost:8080/api/users', {
+    fetch(`${API_BASE_URL}/users`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUser)

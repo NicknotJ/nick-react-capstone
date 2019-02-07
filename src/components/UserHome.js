@@ -36,9 +36,7 @@ class UserHome extends Component {
     };
 
     onDisplayDateChange(e){
-        console.log(e);
-        let newDate = e.target.value
-        this.props.dispatch(changeDisplayTime(newDate));
+        console.log(e.target.value);
     }
   
 
@@ -96,7 +94,7 @@ class UserHome extends Component {
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
-                <form>
+                <form onChange={e => {this.onDisplayDateChange(e)}}>
                     <select role='display-date' /*onChange={e => {this.onDisplayDateChange(e)}}*/>
                         <option value={sevenDaysAgo}>One Week</option>
                         <option value={fourteenDaysAgo}>Two Weeks</option>

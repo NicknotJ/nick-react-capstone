@@ -17,10 +17,6 @@ class UserHome extends Component {
         let data = {};
         data.location = e._id;
         data.username = this.props.username;
-        console.log(data);
-        //Sets addPain to true? Passes data along... via state?
-        // this.props.dispatch(submitPain(data));
-        // this.props.dispatch(requestPain(data.username));
         this.props.dispatch(addPain(data.location));
     }
 
@@ -29,9 +25,7 @@ class UserHome extends Component {
         let location = this.props.painLocation;
         let username = this.props.username;
         let data = {painLevel, location, username};
-        console.log('the following is data');
-        console.log(data);
-        this.props.dispatch(submitPain(data))
+        this.props.dispatch(submitPain(data));
         this.props.dispatch(requestPain(data.username));
     }
 
@@ -44,20 +38,30 @@ class UserHome extends Component {
     //CUSTOMIZE THE COLORS! opaque is your length
     //filter (only the pains with the correct id)
     filterPain(data, location){
-        console.log('the following is what filterpain gets...');
-        console.log(data);
         let filteredData = data.filter(piece => piece.location === String(location));
         if(filteredData.length === 0){
             return undefined;
         } else {
-            console.log('Here comes filteredData!');
-            console.log(filteredData);
-            return filteredData[0].painLevel
+            return filteredData
+            //this will return filteredData eventually
     }}
 
-    //function to average out filteredData. Probably use a forLoop/forEach
-    // and use the i value at the end to divide
-    
+    //filters the remaining pains from filterPain based on the selected display date
+    filterDate(data, date){
+        if(!data){
+            return undefined;
+        }
+        console.log(date);
+        console.log(data[0].date);
+        let filteredData = data.filter(piece => piece.date > date);
+        if(filteredData.length === 0){
+            return undefined;
+        } else {
+            return filteredData[0].painLevel;
+        }
+    }
+
+    //function to average out filteredData. Probably use a forLoop/forEach and use the i value at the end to dvide
     //painColor can return a string like 'rgba(255, 0, 0, and painShade can return .5)'
     painColor(painLevel) {
         console.log(`painLevel is ${painLevel}`);
@@ -65,13 +69,13 @@ class UserHome extends Component {
             return undefined
         } else if(painLevel > 4){
             return 'rgba(255,0,0,.5)'
-        } else if (painLevel < 2){
+        } else if (painLevel > 2.01){
             return 'rgba(0,255,0,.5)'
         } else return 'rgba(0, 0, 255, .5)'
     }
 
     preFillFill(location){
-        return this.painColor(this.filterPain(this.props.userData, location));
+        return this.painColor(this.filterDate(this.filterPain(this.props.userData, location), this.props.displayDate));
     }
     render(){
 
@@ -109,7 +113,8 @@ export const mapStateToProps = (state) => {
     username: state.reducer.username,
     userData: state.reducer.userData,
     addPain: state.reducer.addPain,
-    painLocation: state.reducer.painLocation};
+    painLocation: state.reducer.painLocation,
+    displayDate: state.reducer.displayDate};
 }
   
   

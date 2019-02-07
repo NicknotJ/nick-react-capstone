@@ -36,6 +36,7 @@ export const submitPainError = error => ({
 });
 
 export const submitPain = pain => dispatch => {
+    console.log(pain);
     dispatch(submitPainRequest())
     return fetch(`${API_BASE_URL}/pain`, {
       method: "POST",
@@ -92,8 +93,8 @@ export const requestPain = username => dispatch => {
         
     })
     .catch(error => {
-        // dispatch(requestPainError(error));
         console.log(error);
+        // dispatch(requestPainError(error));
     })
 };
 

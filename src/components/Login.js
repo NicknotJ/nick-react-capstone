@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {reduxForm, Field } from 'redux-form';
 import {required, lengthRequirements, noWhiteSpace} from '../validators/user';
 import {userLogin} from '../actions/user';
+import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
+
 
 const passwordLength = lengthRequirements({min: 7, max: 43});
 const usernameLength = lengthRequirements({min: 2, max: 31});
@@ -17,7 +19,6 @@ export class Login extends Component{
         console.log('I, the login, ran');
         this.props.dispatch(userLogin(user));
     }
-
     render() {
     return(
         <div role="container" className="loginContainer">

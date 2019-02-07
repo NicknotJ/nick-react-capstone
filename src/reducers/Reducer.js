@@ -1,5 +1,5 @@
 import {USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS} from '../actions/user';
-import {REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
+import {SET_PAIN_LOCATION, ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
 
 const initialState = {
     //Determines if user sees userpage or login/registration
@@ -13,7 +13,8 @@ const initialState = {
     addPain: false,
     //How many days worth of data to display; default: 7
     display: 7,
-    error: ''
+    error: '',
+    painLocation: ''
 }
 
 export default (state = initialState, action) => {
@@ -28,6 +29,12 @@ export default (state = initialState, action) => {
             loggedIn: true,
             username: action.user,
             loading: false
+        })
+    }
+    if(action.type === ADD_PAIN){
+        return Object.assign({}, state, {
+            addPain: true,
+            painLocation: action.location
         })
     }
     if(action.type === REQUEST_PAIN_SUCCESS){

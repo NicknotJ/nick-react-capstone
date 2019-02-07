@@ -3,10 +3,16 @@ import {API_BASE_URL} from '../config';
 // //add pain action
 // //display actions
 
+export const SET_PAIN_LOCATION = 'SET_PAIN_LOCATION';
+export const setPainLocation = location => ({
+    type: SET_PAIN_LOCATION,
+    location
+})
 
-export const ADD_PAIN = 'ADD_PAIN'
-export const addPain = () => ({
-    type: ADD_PAIN
+export const ADD_PAIN = 'ADD_PAIN';
+export const addPain = location => ({
+    type: ADD_PAIN,
+    location
 });
 
 // //Lockout the user from submitting more pain?

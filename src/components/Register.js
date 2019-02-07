@@ -25,7 +25,7 @@ export class Register extends Component{
             <Field component={Input} type='text' name='newUsername' element='input' validate={[required, usernameLength, noWhiteSpace]}  />
             <label htmlFor='newPassword'>New Password</label>
             <Field component={Input} type='password' name='newPassword' element='input' validate={[required, passwordLength, noWhiteSpace]} />
-            <button type='submit'>Confirm</button>
+            <button type='submit' disabled={this.props.loading}>Confirm</button>
           </form>
         </div>
     )

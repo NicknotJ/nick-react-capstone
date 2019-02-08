@@ -10,11 +10,15 @@ import ChangeDate from './UserHomeComponents/ChangeDate';
 import RatePain from './UserHomeComponents/RatePain'
 
 class UserHome extends Component {
-    state = {
+    constructor(props){
+        super(props);
+    this.state = {
         displayValue: sevenDaysAgo._d,
         displayError: '',
         isDisplayError: false
-    };
+    }
+    this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
+}
     componentDidMount(){
         let username= this.props.username;
         console.log(`componentDidMount, username is ${username}`);
@@ -35,6 +39,10 @@ class UserHome extends Component {
         let data = {};
         data.location = e._id;
         data.username = this.props.username;
+        this.setState({
+            displayError: '',
+            isDisplayError: false
+        })
         this.props.dispatch(addPain(data.location));
     }
 
@@ -82,10 +90,47 @@ class UserHome extends Component {
     };
 
     onDisplayDateChange(e){
-        console.log(e.target.value);
-        this.setState({timeValue: e.target.value})
         console.log(this.state);
+        //getting back One Week, Two Weeks, One Month, etc. etc. 
+        console.log(e.target.value === 'One Week');
+        console.log(e.target.value);
+        if(e.target.value === 'One Week'){
+          console.log('One Week ran');
+          this.setState({
+            displayValue: sevenDaysAgo._d
+          })
+        } 
+        if('Two Weeks' === e.target.value){
+          console.log('Two Weeks Ran');
+          this.setState({
+            displayValue: fourteenDaysAgo._d
+          })
+        }
+        if('One Month' === e.target.value){
+          console.log('One Month Ran');
+          this.setState({
+            displayValue: oneMonthAgo._d
+          })
+        }
+        if('Three Months' === e.target.value){
+          this.setState({
+            displayValue: threeMonthsAgo._d
+          })
+        }
+        if('Six Months' === e.target.value){
+          this.setState({
+            displayValue: sixMonthsAgo._d
+          })
+        }
+        if('One Year' === e.target.value){
+          this.setState({
+            displayValue: oneYearAgo._d
+          })
+        }
+        console.log(this.state);
+        console.log(this.filterDate(this.props.userData, this.state.displayValue));
     }
+
   
 
     //CUSTOMIZE THE COLORS! opaque is your length
@@ -102,14 +147,28 @@ class UserHome extends Component {
     //filters the remaining pains from filterPain based on the selected display date
     filterDate(data, date){
         if(!data){
+            console.log('No Data!');
             return undefined;
         }
-        let filteredData = data.filter(piece => piece.date > this.state.displayValue());
+        let filteredData = data.filter(piece => {
+            console.log(moment(piece.date).diff(date, 'days'));
+            return (moment(piece.date).diff(this.state.displayValue, 'days') > 0)
+        })
         if(filteredData.length === 0){
+            console.log('Nothing made it through')
             return undefined;
         } else {
-            return filteredData[0].painLevel;
+            return filteredData
         }
+    }
+
+    averagePain(data){
+        let sum = 0;
+        let i;
+        for(i = 0; i < data.length; i++){
+            sum = sum + data.painLevel;
+        }
+        return (sum / i)
     }
 
     //function to average out filteredData. Probably use a forLoop/forEach and use the i value at the end to dvide
@@ -125,9 +184,6 @@ class UserHome extends Component {
     }
 
     preFillFill(location){
-        //this is incomprehensible, fix this!
-        // const filteredData = this.props.userData.filter(piece => piece.date > this.state.timeValue)
-        // return this.painColor(this.filterDate(this.filterPain(filteredData, location), this.props.displayDate._d));
     }
     render(){
 
@@ -142,7 +198,7 @@ class UserHome extends Component {
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
-                <ChangeDate />
+                <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                 {this.displayError()}
                 <div role='image-container' className='ImageWrapperContainer'>
                     <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={'https://images.template.net/wp-content/uploads/2016/03/02042152/Free-Body-Diagram-Template-Download.jpg'} map={AREAS_MAP} />

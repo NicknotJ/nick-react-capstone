@@ -6,12 +6,29 @@ import { submitPain, requestPain, addPain } from '../actions/pain';
 import { changeDisplayTime } from '../actions/time';
 import moment from 'moment';
 import {sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
+import ChangeDate from './UserHomeComponents/ChangeDate';
+import RatePain from './UserHomeComponents/RatePain'
 
 class UserHome extends Component {
+    state = {
+        displayValue: sevenDaysAgo._d,
+        displayError: '',
+        isDisplayError: false
+    };
     componentDidMount(){
         let username= this.props.username;
         console.log(`componentDidMount, username is ${username}`);
         this.props.dispatch(requestPain(username));
+    };
+
+    displayError(){
+        if(this.state.displayError){
+            return (
+                <div className='errorMessage' role='container'>
+                    <p>{this.state.displayError}</p>
+                </div>
+            )
+        }
     };
 
     handleClick(e){
@@ -22,13 +39,42 @@ class UserHome extends Component {
     }
 
     handleSubmit(e, num){
-        let date = moment();
-        let painLevel = num;
+        //Need to filter by location, then check if dates match. If match,
+        //return setState={displayError: 'Please wait until tomorrow to rate that location again'}
+        // let today = moment();
+        // let otherDay = moment(this.props.userData[0].date);
+        //today.diff(otherDay, 'days'));
+        //if today.diff(~~~~) === 0 {return this.setState(displayError: 'Please wait till tomorrow to rate that location again')}
         let location = this.props.painLocation;
+        let date = moment();
+        let locationFiltered = this.filterPain(this.props.userData, location);
+        console.log(locationFiltered);
+        let isSame;
+        if(locationFiltered){
+            console.log('we will compare times!');
+            let today = moment();
+            locationFiltered.forEach(data => {
+                let otherDay = moment(data.date);
+                if(today.diff(otherDay, 'days') === 0){
+                    console.log('the if is runnin!')
+                    isSame = true;
+                    console.log(isSame);
+                }
+                }
+            )
+        }
+        if(isSame){
+            return this.setState({
+                isDisplayError: true,
+                displayError: 'Please wait until tomorrow to rate that location again'
+            });
+        } else {
+        let painLevel = num;
         let username = this.props.username;
         let data = {painLevel, location, username, date};
         this.props.dispatch(submitPain(data));
         this.props.dispatch(requestPain(data.username));
+        }
     }
 
     _onMouseClick(e) {
@@ -37,6 +83,8 @@ class UserHome extends Component {
 
     onDisplayDateChange(e){
         console.log(e.target.value);
+        this.setState({timeValue: e.target.value})
+        console.log(this.state);
     }
   
 
@@ -48,7 +96,7 @@ class UserHome extends Component {
             return undefined;
         } else {
             return filteredData
-            //this will return filteredData eventually
+           
     }}
 
     //filters the remaining pains from filterPain based on the selected display date
@@ -56,9 +104,7 @@ class UserHome extends Component {
         if(!data){
             return undefined;
         }
-        console.log(date.toISOString());
-        console.log(data[0].date);
-        let filteredData = data.filter(piece => piece.date > date.toISOString());
+        let filteredData = data.filter(piece => piece.date > this.state.displayValue());
         if(filteredData.length === 0){
             return undefined;
         } else {
@@ -79,7 +125,9 @@ class UserHome extends Component {
     }
 
     preFillFill(location){
-        return this.painColor(this.filterDate(this.filterPain(this.props.userData, location), this.props.displayDate._d));
+        //this is incomprehensible, fix this!
+        // const filteredData = this.props.userData.filter(piece => piece.date > this.state.timeValue)
+        // return this.painColor(this.filterDate(this.filterPain(filteredData, location), this.props.displayDate._d));
     }
     render(){
 
@@ -94,26 +142,12 @@ class UserHome extends Component {
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
-                <form onChange={e => {this.onDisplayDateChange(e)}}>
-                    <select role='display-date' /*onChange={e => {this.onDisplayDateChange(e)}}*/>
-                        <option value={sevenDaysAgo}>One Week</option>
-                        <option value={fourteenDaysAgo}>Two Weeks</option>
-                        <option value={oneMonthAgo}>One Month</option>
-                        <option value={threeMonthsAgo}>Three Months</option>
-                        <option value={sixMonthsAgo}>Six Months</option>
-                        <option value={oneYearAgo}>One Year</option>
-                    </select>
-                </form>
+                <ChangeDate />
+                {this.displayError()}
                 <div role='image-container' className='ImageWrapperContainer'>
                     <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={'https://images.template.net/wp-content/uploads/2016/03/02042152/Free-Body-Diagram-Template-Download.jpg'} map={AREAS_MAP} />
                     <p>Click On The Image to Select Pain Location</p>
-                    <div role='rate-pain'>
-                        <button onClick={e => {this.handleSubmit(e, 1)}} type='submit' disabled={!this.props.addPain} value='1'>1</button>
-                        <button onClick={e => {this.handleSubmit(e, 2)}} type='submit' disabled={!this.props.addPain} value='2'>2</button>
-                        <button onClick={e => {this.handleSubmit(e, 3)}} type='submit' disabled={!this.props.addPain} value='3'>3</button>
-                        <button onClick={e => {this.handleSubmit(e, 4)}} type='submit' disabled={!this.props.addPain} value='4'>4</button>
-                        <button onClick={e => {this.handleSubmit(e, 5)}} type='submit' disabled={!this.props.addPain} value='5'>5</button>
-                    </div>
+                    <RatePain handleSubmit={(e, num) => {this.handleSubmit(e, num)}}/>
                     <p>Afterwards, click on a button above to rate the pain</p>
                 </div>
             </div>
@@ -122,7 +156,6 @@ class UserHome extends Component {
 }
 
 export const mapStateToProps = (state) => {
-    console.log(state)
     return {loggedIn: state.reducer.loggedIn,
     username: state.reducer.username,
     userData: state.reducer.userData,

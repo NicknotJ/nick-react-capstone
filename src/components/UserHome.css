@@ -15,3 +15,8 @@ img{
     margin-right: auto;
     margin-left: auto;
 }
+
+.errorMessage{
+    background-color: black;
+    color: white;
+}

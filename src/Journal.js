@@ -11,6 +11,7 @@ import UserHome from './components/UserHome';
 
 class Journal extends React.Component {
   render() {
+    //call the actions that check the local storage...
     if(this.props.loggedIn){
       return (
         <div className="UserHomePage">

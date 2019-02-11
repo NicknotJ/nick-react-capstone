@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '../config.js'
 //login and registration actions 
+import {setAuthToken, storeAuthInfo} from './auth';
 
 export const USER_REQUEST = 'USER_LOGIN_REQUEST';
 export const userRequest = () => ({
@@ -35,13 +36,14 @@ export const userLogin = user => dispatch => {
     })
     .then(res => {
         console.log(res);
+        storeAuthInfo(res.authToken, dispatch);
         console.log(user);
         dispatch(userLoginSuccess(user.username));
     })
     //below is untested
     .catch(err => {
-                console.log(err);
-                dispatch(userLoginError(err))
+        console.log(err);
+        dispatch(userLoginError(err))
     })
 }
 

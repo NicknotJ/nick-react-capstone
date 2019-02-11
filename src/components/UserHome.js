@@ -15,7 +15,8 @@ class UserHome extends Component {
     this.state = {
         displayValue: sevenDaysAgo._d,
         displayError: '',
-        isDisplayError: false
+        isDisplayError: false,
+        days: 7
     }
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
@@ -91,44 +92,34 @@ class UserHome extends Component {
 
     onDisplayDateChange(e){
         console.log(this.state);
-        //getting back One Week, Two Weeks, One Month, etc. etc. 
-        console.log(e.target.value === 'One Week');
-        console.log(e.target.value);
+        let time;
+        let days;
         if(e.target.value === 'One Week'){
-          console.log('One Week ran');
-          this.setState({
-            displayValue: sevenDaysAgo._d
-          })
+          time = sevenDaysAgo._d;
+          days = 7;
         } 
-        if('Two Weeks' === e.target.value){
-          console.log('Two Weeks Ran');
-          this.setState({
-            displayValue: fourteenDaysAgo._d
-          })
+        if(e.target.value === 'Two Weeks'){
+          time = fourteenDaysAgo._d;
+          days = 14;
         }
-        if('One Month' === e.target.value){
-          console.log('One Month Ran');
-          this.setState({
-            displayValue: oneMonthAgo._d
-          })
+        if(e.target.value === 'One Month'){
+          time = oneMonthAgo._d;
+          days = 30.42;    
         }
-        if('Three Months' === e.target.value){
-          this.setState({
-            displayValue: threeMonthsAgo._d
-          })
+        if(e.target.value === 'Three Months'){
+          time = threeMonthsAgo._d;
+          days = 91.25;    
         }
-        if('Six Months' === e.target.value){
-          this.setState({
-            displayValue: sixMonthsAgo._d
-          })
+        if(e.target.value === 'Six Months'){
+          time = sixMonthsAgo;
+          days = 182.5;    
         }
-        if('One Year' === e.target.value){
-          this.setState({
-            displayValue: oneYearAgo._d
-          })
+        if(e.target.value === 'One Year'){
+          time = oneYearAgo;
+          days = 365;    
         }
-        console.log(this.state);
-        console.log(this.filterDate(this.props.userData, this.state.displayValue));
+        this.setState({displayValue: time, days: days}, () => {
+        console.log("SetState's Callback Function.", this.state)})
     }
 
   
@@ -136,6 +127,10 @@ class UserHome extends Component {
     //CUSTOMIZE THE COLORS! opaque is your length
     //filter (only the pains with the correct id)
     filterPain(data, location){
+        if(!data){
+            //if there is no data
+            return undefined;
+        }
         let filteredData = data.filter(piece => piece.location === String(location));
         if(filteredData.length === 0){
             return undefined;
@@ -162,13 +157,43 @@ class UserHome extends Component {
         }
     }
 
+    averageDate(data){
+        if(!data){
+          return undefined;
+        }
+        //We should have the days from filteredData
+        let numberDays = this.state.days;
+        let average = data.length/numberDays;
+        return average;
+    }
+
     averagePain(data){
+        console.log('The following is Data in averagePain:', data);
+        if(!data){
+          return undefined;
+        }
         let sum = 0;
         let i;
         for(i = 0; i < data.length; i++){
-            sum = sum + data.painLevel;
+            sum = sum + data[i].painLevel;
         }
         return (sum / i)
+    }
+
+    painShade(painData){
+        if(!painData){
+            return undefined
+        } else if (painData > .9){
+            return ' .9)';
+        } else if (painData > .75){
+            return ' .75)';
+        } else if (painData > .5){
+            return ' .5)';
+        } else if (painData > .25){
+            return ' .25)';
+        } else if (painData > .1){
+            return ' .1)';
+        } else return ' .05)';
     }
 
     //function to average out filteredData. Probably use a forLoop/forEach and use the i value at the end to dvide
@@ -177,24 +202,40 @@ class UserHome extends Component {
         if(!painLevel){
             return undefined
         } else if(painLevel > 4){
-            return 'rgba(255,0,0,.5)'
+            return 'rgba(255,0,0,'
         } else if (painLevel > 2.01){
-            return 'rgba(0,255,0,.5)'
-        } else return 'rgba(0, 0, 255, .5)'
+            return 'rgba(0,255,0,'
+        } else return 'rgba(0, 0, 255,'
     }
 
-    preFillFill(location){
+    preFillFill(location, userData){
+    let rgbaValue; //returned value for color/shade
+    let locationFilteredData; //will be filtered on location
+    let filteredData; //will be filtered based on date
+    let averagePain;
+    let averageLength;
+    locationFilteredData = this.filterPain(userData, location); //filtered based on location
+    filteredData = this.filterDate(locationFilteredData, this.state.displayValue); //filtered based on display date
+    console.log(`filteredData is ${filteredData}`);
+    averagePain = this.averagePain(filteredData);
+    console.log(`averagePain is ${averagePain}`);
+    averageLength = this.averageDate(filteredData);
+    rgbaValue = this.painColor(averagePain);
+    rgbaValue = rgbaValue + this.painShade(averageLength);
+    console.log(rgbaValue);
+    return rgbaValue;
     }
+    
     render(){
 
         
         const AREAS_MAP = { name: 'Body', areas: [
-            {_id:'0', shape:'circle', coords: [160, 40, 30], preFillColor: this.preFillFill(0) },
-            {_id: '1', shape: 'rect', coords: [120, 80, 165, 180], preFillColor: this.preFillFill(1)},
-            {_id: '2', shape: 'rect', coords: [165, 80, 205, 180], preFillColor: this.preFillFill(2)},
-            {_id: '3', shape: 'rect', coords: [125, 180, 200, 240], preFillColor: this.preFillFill(3)},
-            {_id: '4', shape: 'rect', coords: [125, 241, 160, 385], preFillColor: this.preFillFill(4)},
-            {_id: '5', shape: 'rect', coords: [165, 241, 200, 385], preFillColor: this.preFillFill(5)}]}
+            {_id:'0', shape:'circle', coords: [160, 40, 30], preFillColor: this.preFillFill(0, this.props.userData)},
+            {_id: '1', shape: 'rect', coords: [120, 80, 165, 180], preFillColor: this.preFillFill(1, this.props.userData)},
+            {_id: '2', shape: 'rect', coords: [165, 80, 205, 180], preFillColor: this.preFillFill(2, this.props.userData)},
+            {_id: '3', shape: 'rect', coords: [125, 180, 200, 240], preFillColor: this.preFillFill(3, this.props.userData)},
+            {_id: '4', shape: 'rect', coords: [125, 241, 160, 385], preFillColor: this.preFillFill(4, this.props.userData)},
+            {_id: '5', shape: 'rect', coords: [165, 241, 200, 385], preFillColor: this.preFillFill(5, this.props.userData)}]}
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>

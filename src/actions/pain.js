@@ -35,13 +35,14 @@ export const submitPainError = error => ({
     payload: error
 });
 
-export const submitPain = pain => dispatch => {
+export const submitPain = (pain, token) => dispatch => {
     console.log(pain);
     dispatch(submitPainRequest())
     return fetch(`${API_BASE_URL}/pain`, {
       method: "POST",
       headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(pain)
     })
@@ -71,13 +72,14 @@ export const requestPainFailure = error => ({
     error
 })
 
-//Security Issues
-export const requestPain = username => dispatch => {
+
+export const requestPain = (token) => dispatch => {
     dispatch(submitPainRequest())
-    return fetch(`${API_BASE_URL}/pain/?searchTerm=${username}`, {
+    return fetch(`${API_BASE_URL}/pain/`, {
       method: "GET",
       headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
       },
     })
     .then(res => {

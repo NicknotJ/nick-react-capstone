@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { connect } from 'react-redux';
 import UserHome from './components/UserHome'; 
-
+import Message from './components/UserHomeComponents/Message';
 
 
 class Journal extends React.Component {
@@ -23,6 +23,7 @@ class Journal extends React.Component {
       <div className="Journal">
           <Banner />
           <StaticBody />
+          <Message />
           <Login />
           <Register />
       </div>

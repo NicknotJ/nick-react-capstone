@@ -7,8 +7,10 @@ import { changeDisplayTime } from '../actions/time';
 import moment from 'moment';
 import {sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
 import ChangeDate from './UserHomeComponents/ChangeDate';
-import RatePain from './UserHomeComponents/RatePain'
-
+import RatePain from './UserHomeComponents/RatePain';
+import Message from './UserHomeComponents/Message';
+import {loadToken} from '../local-storage';
+import {LogOut} from './UserHomeComponents/LogOut';
 class UserHome extends Component {
     constructor(props){
         super(props);
@@ -21,9 +23,8 @@ class UserHome extends Component {
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
     componentDidMount(){
-        let username= this.props.username;
-        console.log(`componentDidMount, username is ${username}`);
-        this.props.dispatch(requestPain(username));
+        console.log(`componentDidMount`);
+        this.props.dispatch(requestPain(loadToken()));
     };
 
     displayError(){
@@ -48,12 +49,6 @@ class UserHome extends Component {
     }
 
     handleSubmit(e, num){
-        //Need to filter by location, then check if dates match. If match,
-        //return setState={displayError: 'Please wait until tomorrow to rate that location again'}
-        // let today = moment();
-        // let otherDay = moment(this.props.userData[0].date);
-        //today.diff(otherDay, 'days'));
-        //if today.diff(~~~~) === 0 {return this.setState(displayError: 'Please wait till tomorrow to rate that location again')}
         let location = this.props.painLocation;
         let date = moment();
         let locationFiltered = this.filterPain(this.props.userData, location);
@@ -81,11 +76,12 @@ class UserHome extends Component {
         let painLevel = num;
         let username = this.props.username;
         let data = {painLevel, location, username, date};
-        this.props.dispatch(submitPain(data));
-        this.props.dispatch(requestPain(data.username));
+        this.props.dispatch(submitPain(data, loadToken()));
+        
+        this.props.dispatch(requestPain(loadToken()));
         }
     }
-
+    //Check this (testing only)
     _onMouseClick(e) {
         console.log({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY});
     };
@@ -142,15 +138,12 @@ class UserHome extends Component {
     //filters the remaining pains from filterPain based on the selected display date
     filterDate(data, date){
         if(!data){
-            console.log('No Data!');
             return undefined;
         }
         let filteredData = data.filter(piece => {
-            console.log(moment(piece.date).diff(date, 'days'));
             return (moment(piece.date).diff(this.state.displayValue, 'days') > 0)
         })
         if(filteredData.length === 0){
-            console.log('Nothing made it through')
             return undefined;
         } else {
             return filteredData
@@ -168,7 +161,6 @@ class UserHome extends Component {
     }
 
     averagePain(data){
-        console.log('The following is Data in averagePain:', data);
         if(!data){
           return undefined;
         }
@@ -196,8 +188,26 @@ class UserHome extends Component {
         } else return ' .05)';
     }
 
-    //function to average out filteredData. Probably use a forLoop/forEach and use the i value at the end to dvide
-    //painColor can return a string like 'rgba(255, 0, 0, and painShade can return .5)'
+
+    loadingImg(){
+        const AREAS_MAP = { name: 'Body', areas: [
+            {_id:'0', shape:'circle', coords: [160, 40, 30], preFillColor: this.preFillFill(0, this.props.userData)},
+            {_id: '1', shape: 'rect', coords: [120, 80, 165, 180], preFillColor: this.preFillFill(1, this.props.userData)},
+            {_id: '2', shape: 'rect', coords: [165, 80, 205, 180], preFillColor: this.preFillFill(2, this.props.userData)},
+            {_id: '3', shape: 'rect', coords: [125, 180, 200, 240], preFillColor: this.preFillFill(3, this.props.userData)},
+            {_id: '4', shape: 'rect', coords: [125, 241, 160, 385], preFillColor: this.preFillFill(4, this.props.userData)},
+            {_id: '5', shape: 'rect', coords: [165, 241, 200, 385], preFillColor: this.preFillFill(5, this.props.userData)}]}
+        if(this.props.loading){
+        return (
+            <img alt='Loading Placeholder' src='https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2015/05/InternetSlowdown_Day.gif'/>
+        )
+        } else {
+            return (
+                <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={'https://images.template.net/wp-content/uploads/2016/03/02042152/Free-Body-Diagram-Template-Download.jpg'} map={AREAS_MAP} />
+            )
+        }
+    }
+   
     painColor(painLevel) {
         if(!painLevel){
             return undefined
@@ -214,11 +224,9 @@ class UserHome extends Component {
     let filteredData; //will be filtered based on date
     let averagePain;
     let averageLength;
-    locationFilteredData = this.filterPain(userData, location); //filtered based on location
+    locationFilteredData = this.filterPain(userData, location);
     filteredData = this.filterDate(locationFilteredData, this.state.displayValue); //filtered based on display date
-    console.log(`filteredData is ${filteredData}`);
     averagePain = this.averagePain(filteredData);
-    console.log(`averagePain is ${averagePain}`);
     averageLength = this.averageDate(filteredData);
     rgbaValue = this.painColor(averagePain);
     rgbaValue = rgbaValue + this.painShade(averageLength);
@@ -229,24 +237,20 @@ class UserHome extends Component {
     render(){
 
         
-        const AREAS_MAP = { name: 'Body', areas: [
-            {_id:'0', shape:'circle', coords: [160, 40, 30], preFillColor: this.preFillFill(0, this.props.userData)},
-            {_id: '1', shape: 'rect', coords: [120, 80, 165, 180], preFillColor: this.preFillFill(1, this.props.userData)},
-            {_id: '2', shape: 'rect', coords: [165, 80, 205, 180], preFillColor: this.preFillFill(2, this.props.userData)},
-            {_id: '3', shape: 'rect', coords: [125, 180, 200, 240], preFillColor: this.preFillFill(3, this.props.userData)},
-            {_id: '4', shape: 'rect', coords: [125, 241, 160, 385], preFillColor: this.preFillFill(4, this.props.userData)},
-            {_id: '5', shape: 'rect', coords: [165, 241, 200, 385], preFillColor: this.preFillFill(5, this.props.userData)}]}
+       
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
                 <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                 {this.displayError()}
                 <div role='image-container' className='ImageWrapperContainer'>
-                    <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={'https://images.template.net/wp-content/uploads/2016/03/02042152/Free-Body-Diagram-Template-Download.jpg'} map={AREAS_MAP} />
+                    {this.loadingImg()}
                     <p>Click On The Image to Select Pain Location</p>
                     <RatePain handleSubmit={(e, num) => {this.handleSubmit(e, num)}}/>
                     <p>Afterwards, click on a button above to rate the pain</p>
+                    <p>The scale is from 1 (weakest) to 5 (strongest)</p>
                 </div>
+                <LogOut />
             </div>
         )
     }
@@ -258,7 +262,9 @@ export const mapStateToProps = (state) => {
     userData: state.reducer.userData,
     addPain: state.reducer.addPain,
     painLocation: state.reducer.painLocation,
-    displayDate: state.reducer.displayDate};
+    displayDate: state.reducer.displayDate,
+    loading: state.reducer.loading
+};
 }
   
   

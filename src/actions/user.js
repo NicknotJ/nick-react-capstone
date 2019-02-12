@@ -1,13 +1,14 @@
 import { API_BASE_URL } from '../config.js'
 //login and registration actions 
-import {setAuthToken, storeAuthInfo} from './auth';
+import {setAuthToken, storeAuthInfo, clearAuth} from './auth';
+
 
 export const USER_REQUEST = 'USER_LOGIN_REQUEST';
 export const userRequest = () => ({
     type: USER_REQUEST
 });
 
-//Allow the user to submit more pain?
+
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const userLoginSuccess = user => ({
     type: USER_LOGIN_SUCCESS,
@@ -23,6 +24,7 @@ export const userLoginError = error => ({
 
 export const userLogin = user => dispatch => {
     dispatch(userRequest());
+    // dispatch(clearAuth()); (if!~~~auth, reset to null)
     fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -60,20 +62,25 @@ export const userRegisterError = error => ({
 
 export const userRegister = newUser => dispatch => {
     dispatch(userRequest());
+    dispatch(clearAuth()); //Check this
     fetch(`${API_BASE_URL}/users`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUser)
     })
     .then(response => {
+        console.log(response);
         if(!response.ok){
             console.log('rejecting the promise in userRegister');
-            return Promise.reject(response.statusText);
+
+            return Promise.reject(response);
         }
         response.json()})
-    .then(res => dispatch(userLoginSuccess(newUser.username)))
+    .then(res => {
+        dispatch(userRegisterSuccess())
+    })
     .catch(err => {
         console.log(err);
-        dispatch(userLoginError(err))
+        dispatch(userRegisterError(err.message))
 })
 }

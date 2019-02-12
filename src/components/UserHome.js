@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import './UserHome.css';
 import { submitPain, requestPain, addPain } from '../actions/pain';
 import {userLogout} from '../actions/user';
-import { changeDisplayTime } from '../actions/time';
 import moment from 'moment';
 import {sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
 import ChangeDate from './UserHomeComponents/ChangeDate';
@@ -236,7 +235,15 @@ class UserHome extends Component {
         {_id:'35', coords: [123,392,161,416], shape:"rect", preFillColor: this.preFillFill(35, this.props.userData)},
         {_id:'36', coords: [88,417,80,430,103,438,112,417], shape:"poly", preFillColor: this.preFillFill(36, this.props.userData)},
         {_id:'37', coords: [134,417,141,436,161,433,161,417], shape:"poly", preFillColor: this.preFillFill(37, this.props.userData)}]};
-            
+        
+        const styles = {  position: 'relative',
+            backgroundColor: 'black',
+            display: 'block',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            width: '100%',
+            padding: '10px',
+            margin: '10px'}
         //const AREAS_MAP_BACK = ~~~~
         const imageFront = require('../images/Body-Diagram-Front.jpg');
         const imageBack = require('../images/Body-Diagram-Back.jpg');
@@ -246,10 +253,14 @@ class UserHome extends Component {
         )
         } else if(this.state.front){
             return (
-                <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP} />
+              <div className='frontImageWrapper'>
+                <ImageMapper imgWidth={248} style={styles} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP} />
+              </div>
             )
         } else { return (
-            <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} />
+            <div role='container' className='backImageWrapper'>
+              <ImageMapper className='backImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} />
+            </div>
         )
         }
     }
@@ -297,15 +308,19 @@ class UserHome extends Component {
         return (
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
-                <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
-                {this.displayError()}
-                <ViewButton handleClick={e => this.handleView(e)} />
+                <div className='dateViewContainer' role='container'>
+                    <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
+                    <ViewButton handleClick={e => this.handleView(e)} />
+                    {this.displayError()}
+                </div>
                 <div role='image-container' className='ImageWrapperContainer'>
                     {this.loadingImg()}
-                    <p>Click On The Image to Select Pain Location</p>
-                    <RatePain handleSubmit={(e, num) => {this.handleSubmit(e, num)}}/>
-                    <p>Afterwards, click on a button above to rate the pain</p>
-                    <p>The scale is from 1 (weakest) to 5 (strongest)</p>
+                    <div role='container' className='ratePainWrapper'>
+                      <p>Click on the Image to Select Pain Location</p>
+                      <RatePain handleSubmit={(e, num) => {this.handleSubmit(e, num)}}/>
+                      <p>Afterwards, Click on a Button Above to Rate the Pain</p>
+                      <p>The Scale is from 1 (weakest) to 5 (strongest)</p>
+                    </div>
                 </div>
                 <LogOut handleClick={e => this.handleLogout(e)} />
             </div>

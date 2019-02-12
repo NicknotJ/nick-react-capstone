@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../config.js'
 //login and registration actions 
 import {setAuthToken, storeAuthInfo, clearAuth} from './auth';
-
+import {clearToken} from '../local-storage';
 
 export const USER_REQUEST = 'USER_LOGIN_REQUEST';
 export const userRequest = () => ({
@@ -84,6 +84,7 @@ export const userRegisterError = error => ({
 export const userRegister = newUser => dispatch => {
     dispatch(userRequest());
     dispatch(clearAuth()); //Check this
+    clearToken();
     fetch(`${API_BASE_URL}/users`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -96,12 +97,11 @@ export const userRegister = newUser => dispatch => {
 
             return Promise.reject(response);
         }
-        response.json()})
-    .then(res => {
         dispatch(userRegisterSuccess())
     })
     .catch(err => {
-        console.log(err);
-        dispatch(userRegisterError(err.message))
+        console.log(`Catch err ran`, err);
+        console.log(err.statusText);
+        dispatch(userRegisterError(err))
 })
 }

@@ -1,11 +1,10 @@
 import React from 'react';
-
+import './ChangeDate.css'
 export default function ChangeDate(props){
 
 
 return (
-    <form >
-        <select role='display-date' onChange={e => {props.onDisplayChange(e)}}>
+        <select className='selectDate' role='display-date' onChange={e => {props.onDisplayChange(e)}}>
             <option>One Week</option>
             <option>Two Weeks</option>
             <option>One Month</option>
@@ -13,6 +12,5 @@ return (
             <option>Six Months</option>
             <option>One Year</option>
         </select>
-    </form>
     )
 }

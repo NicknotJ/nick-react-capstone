@@ -20,7 +20,7 @@ export class Register extends Component{
     return(
         <div role="container" className="registerContainer">
           <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} role='register'>
-            <h3>New User</h3>
+            <h3>Register</h3>
             <label htmlFor='newUsername'>New UserName</label>
             <Field component={Input} type='text' className= 'newUserName' name='newUsername' element='input' validate={[required, usernameLength, noWhiteSpace]}  />
             <label htmlFor='newPassword'>New Password</label>

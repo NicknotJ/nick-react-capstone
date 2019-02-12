@@ -4,6 +4,7 @@
     padding: 15px;
     background-color: #C3C6FF;
     max-width: 550px;
+    width: 85%;
     box-shadow: 5px 5px 10px 1px #10101A;
 }
 
@@ -11,6 +12,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 98%;
     max-width: 500px;
 }

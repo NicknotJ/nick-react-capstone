@@ -45,7 +45,7 @@ export const storeAuthInfo = (authToken, dispatch) => {
 
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
-    const token = getState().auth.authToken;
+    const token = getState().auth.authToken; //update to grabbing from local storage
     return fetch(`${API_BASE_URL}/auth/refresh`, {
         method: 'POST',
         headers: {

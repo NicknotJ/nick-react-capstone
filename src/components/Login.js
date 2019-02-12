@@ -26,7 +26,7 @@ export class Login extends Component{
             <h3>Login</h3>
             <label htmlFor='username'>Username</label>
             <Field component={Input} type='username' name='username' element='input' validate={[required, usernameLength, noWhiteSpace]} />
-            <label htmlFor='newPassword'>New Password</label>
+            <label htmlFor='password'>Password</label>
             <Field component={Input} type='password' name='password' element='input' validate={[required, passwordLength, noWhiteSpace]} />
             <button type='submit' disabled={this.props.loading}>Confirm</button>
           </form>

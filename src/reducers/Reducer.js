@@ -21,7 +21,7 @@ const initialState = {
     addPain: false,
     //Possibly redundent 
     displayDate: sevenDaysAgo,
-    message: '',
+    message: 'Please Log In, Register, or Click the Image Above',
     painLocation: '',
     token: null
 }

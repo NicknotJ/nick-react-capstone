@@ -1,3 +1,13 @@
 .messageContainer {
     text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: #10101A;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFFFFF;
+    font-size: 24px;
+    box-shadow: 5px 5px 5px 1px #10101A;
 }

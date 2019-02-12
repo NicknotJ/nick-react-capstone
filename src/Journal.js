@@ -24,8 +24,10 @@ class Journal extends React.Component {
           <Banner />
           <StaticBody />
           <Message />
-          <Login />
-          <Register />
+          <div className='userInputs'>
+            <Login />
+            <Register />
+          </div>
       </div>
     );
   }}

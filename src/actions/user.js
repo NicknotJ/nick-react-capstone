@@ -31,6 +31,7 @@ export const userLogin = user => dispatch => {
         body: JSON.stringify(user)
     })
     .then(result => {
+        console.log(result);
         if(!result.ok){
             return Promise.reject(result.statusText);
         }

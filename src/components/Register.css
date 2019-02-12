@@ -1,10 +1,12 @@
 .registerContainer {
+    position: absolute;
     display: inline-block;
-    /*Temp Solution */
-    margin-left: 22%;
-    background-color: blue;
+    background-color: #2A34E7;
     text-align: center;
-    width: 20%;
+    width: 40%;
+    right: 0px;
+    margin-bottom: 5px;
+    box-shadow: 5px 5px 10px 1px #10101A;
 }
 
 input {

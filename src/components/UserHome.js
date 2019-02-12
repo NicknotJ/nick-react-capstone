@@ -12,6 +12,7 @@ import RatePain from './UserHomeComponents/RatePain';
 import Message from './UserHomeComponents/Message';
 import {loadToken, clearToken} from '../local-storage';
 import {LogOut} from './UserHomeComponents/LogOut';
+import ViewButton from './UserHomeComponents/ViewButton';
 class UserHome extends Component {
     constructor(props){
         super(props);
@@ -19,7 +20,8 @@ class UserHome extends Component {
         displayValue: sevenDaysAgo._d,
         displayError: '',
         isDisplayError: false,
-        days: 7
+        days: 7,
+        front: true
     }
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
@@ -119,7 +121,13 @@ class UserHome extends Component {
         console.log("SetState's Callback Function.", this.state)})
     }
 
-  
+    handleView(e){
+        e.preventDefault();
+        let view = !this.state.front;
+        this.setState({
+            front: view
+        }, ()=> {})
+    }
 
     //CUSTOMIZE THE COLORS! opaque is your length
     //filter (only the pains with the correct id)
@@ -186,31 +194,70 @@ class UserHome extends Component {
             return ' .25)';
         } else if (painData > .1){
             return ' .1)';
-        } else return ' .05)';
+        } else return ' .01)';
     }
 
-
     loadingImg(){
-        const AREAS_MAP = { name: 'Body', areas: [
-            {_id:'0', shape:'circle', coords: [160, 40, 30], preFillColor: this.preFillFill(0, this.props.userData)},
-            {_id: '1', shape: 'rect', coords: [120, 80, 165, 180], preFillColor: this.preFillFill(1, this.props.userData)},
-            {_id: '2', shape: 'rect', coords: [165, 80, 205, 180], preFillColor: this.preFillFill(2, this.props.userData)},
-            {_id: '3', shape: 'rect', coords: [125, 180, 200, 240], preFillColor: this.preFillFill(3, this.props.userData)},
-            {_id: '4', shape: 'rect', coords: [125, 241, 160, 385], preFillColor: this.preFillFill(4, this.props.userData)},
-            {_id: '5', shape: 'rect', coords: [165, 241, 200, 385], preFillColor: this.preFillFill(5, this.props.userData)}]}
+        const AREAS_MAP = { name: 'FrontBody', areas: [{ _id:'0', coords: [121,12,104,21,102,32,121,32], shape:'poly', preFillColor: this.preFillFill(0, this.props.userData)},
+        {_id:'1', coords: [122,12,122,32,140,32,136,18], shape:'poly', preFillColor: this.preFillFill(1, this.props.userData)},
+        {_id:'2', coords: [101,33,122,51], shape:'rect', preFillColor: this.preFillFill(2, this.props.userData)},
+        {_id:'3', coords: [122,32,144,51], shape:'rect', preFillColor: this.preFillFill(3, this.props.userData)},
+        {_id:'4', coords: [105,52,115,65,122,68,122,51], shape:"poly", preFillColor: this.preFillFill(4, this.props.userData)},
+        {_id:'5', coords: [122,51,137,51,130,64,122,66], shape:"poly", preFillColor: this.preFillFill(5, this.props.userData)},
+        {_id:'6', coords: [106,56,122,69,122,81,106,71], shape:"poly", preFillColor: this.preFillFill(6, this.props.userData)},
+        {_id:'7', coords: [137,56,122,69,122,81,138,70], shape:"poly", preFillColor: this.preFillFill(7, this.props.userData)},
+        {_id:'8', coords: [90,83,105,72,122,82,122,84], shape:"poly", preFillColor: this.preFillFill(8, this.props.userData)},
+        {_id:'9', coords: [138,72,122,80,122,84,157,83], shape:"poly", preFillColor: this.preFillFill(9, this.props.userData)},
+        {_id:'10', coords: [65,83,122,117], shape:"rect", preFillColor: this.preFillFill(10, this.props.userData)},
+        {_id:'11', coords: [122,85,177,117], shape:"rect", preFillColor: this.preFillFill(11, this.props.userData)},
+        {_id:'12', coords: [66,117,58,153,80,155,86,118], shape:"poly", preFillColor: this.preFillFill(12, this.props.userData)},
+        {_id:'13', coords: [156,118,164,154,185,154,178,118], shape:"poly", preFillColor: this.preFillFill(13, this.props.userData)},
+        {_id:'14', coords: [59,154,52,174,76,178,80,154], shape:"poly", preFillColor: this.preFillFill(14, this.props.userData)},
+        {_id:'15', coords: [51,174,46,213,60,215,77,178], shape:"poly", preFillColor: this.preFillFill(15, this.props.userData)},
+        {_id:'16', coords: [44,213,41,224,58,228,61,216], shape:"poly", preFillColor: this.preFillFill(16, this.props.userData)},
+        {_id:'17', coords: [40,225,22,244,42,276,60,228], shape:"poly", preFillColor: this.preFillFill(17, this.props.userData)},
+        {_id:'18', coords: [163,153,168,175,192,173,186,154], shape:"poly", preFillColor: this.preFillFill(18, this.props.userData)},
+        {_id:'19', coords: [168,176,185,216,198,213,193,173], shape:"poly", preFillColor: this.preFillFill(19, this.props.userData)},
+        {_id:'20', coords: [184,217,187,227,205,224,200,213], shape:"poly", preFillColor: this.preFillFill(20, this.props.userData)},
+        {_id:'21', coords: [184,227,195,260,207,272,222,241,205,224], shape:"poly", preFillColor: this.preFillFill(21, this.props.userData)},
+        {_id:'22', coords: [85,118,122,164], shape:"rect", preFillColor: this.preFillFill(22, this.props.userData)},
+        {_id:'23', coords: [122,164,159,118], shape:"rect", preFillColor: this.preFillFill(23, this.props.userData)},
+        {_id:'24', coords: [86,165,122,206], shape:"rect", preFillColor: this.preFillFill(24, this.props.userData)},
+        {_id:'25', coords: [122,165,160,206], shape:"rect", preFillColor: this.preFillFill(25, this.props.userData)},
+        {_id:'26', coords: [122,237,84,207], shape:"rect", preFillColor: this.preFillFill(26, this.props.userData)},
+        {_id:'27', coords: [160,237,122,205], shape:"rect", preFillColor: this.preFillFill(27, this.props.userData)},
+        {_id:'28', coords: [84,238,122,293], shape:"rect", preFillColor: this.preFillFill(28, this.props.userData)},
+        {_id:'29', coords: [122,238,160,293], shape:"rect", preFillColor: this.preFillFill(29, this.props.userData)},
+        {_id:'30', coords: [85,294,122,326], shape:"rect", preFillColor: this.preFillFill(30, this.props.userData)},
+        {_id:'31', coords: [123,294,161,326], shape:"rect", preFillColor: this.preFillFill(31, this.props.userData)},
+        {_id:'32', coords: [85,327,122,392], shape:"rect", preFillColor: this.preFillFill(32, this.props.userData)},
+        {_id:'33', coords: [123,327,161,392], shape:"rect", preFillColor: this.preFillFill(33, this.props.userData)},
+        {_id:'34', coords: [87,392,122,416], shape:"rect", preFillColor: this.preFillFill(34, this.props.userData)},
+        {_id:'35', coords: [123,392,161,416], shape:"rect", preFillColor: this.preFillFill(35, this.props.userData)},
+        {_id:'36', coords: [88,417,80,430,103,438,112,417], shape:"poly", preFillColor: this.preFillFill(36, this.props.userData)},
+        {_id:'37', coords: [134,417,141,436,161,433,161,417], shape:"poly", preFillColor: this.preFillFill(37, this.props.userData)}]};
+            
         //const AREAS_MAP_BACK = ~~~~
+        const imageFront = require('../images/Body-Diagram-Front.jpg');
+        const imageBack = require('../images/Body-Diagram-Back.jpg');
         if(this.props.loading){
         return (
             <img alt='Loading Placeholder' src='https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2015/05/InternetSlowdown_Day.gif'/>
         )
-        } else /*if(this.props.front){return ImageMapper front} */
-            {
+        } else if(this.state.front){
             return (
-                <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={'https://images.template.net/wp-content/uploads/2016/03/02042152/Free-Body-Diagram-Template-Download.jpg'} map={AREAS_MAP} />
+                <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP} />
             )
+        } else { return (
+            <ImageMapper fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} />
+        )
         }
     }
    
+    newMethod() {
+        return this;
+    }
+
     painColor(painLevel) {
         if(!painLevel){
             return undefined
@@ -231,8 +278,7 @@ class UserHome extends Component {
     filteredData = this.filterDate(locationFilteredData, this.state.displayValue); //filtered based on display date
     averagePain = this.averagePain(filteredData);
     averageLength = this.averageDate(filteredData);
-    rgbaValue = this.painColor(averagePain);
-    rgbaValue = rgbaValue + this.painShade(averageLength);
+    rgbaValue = this.painColor(averagePain) + this.painShade(averageLength);
     console.log(rgbaValue);
     return rgbaValue;
     }
@@ -253,6 +299,7 @@ class UserHome extends Component {
                 <h3>{this.props.username}'s Pain Journal</h3>
                 <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                 {this.displayError()}
+                <ViewButton handleClick={e => this.handleView(e)} />
                 <div role='image-container' className='ImageWrapperContainer'>
                     {this.loadingImg()}
                     <p>Click On The Image to Select Pain Location</p>

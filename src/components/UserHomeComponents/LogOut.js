@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 export function LogOut(props){
 
@@ -12,11 +11,3 @@ export function LogOut(props){
         </div>
     )
 }
-
-// export const mapStateToProps = (state) => {
-//     return {
-//         loggedIn: state.reducer.loggedIn
-//     }
-// }
-
-// export default connect(mapStateToProps)(LogOut)

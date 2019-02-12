@@ -7,7 +7,7 @@ export class Message extends Component{
     if(this.props.message){
       return (        
       <div role='container' className='messageContainer'>
-        <span role='message'>{this.props.message}</span>
+        <span role='message'><p>{this.props.message}</p></span>
       </div>)
     } else {
       return null;

@@ -22,8 +22,8 @@ export class Login extends Component{
     render() {
     return(
         <div role="container" className="loginContainer">
-          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-            <h5>Login</h5>
+          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} role='login'>
+            <h3>Login</h3>
             <label htmlFor='username'>Username</label>
             <Field component={Input} type='username' name='username' element='input' validate={[required, usernameLength, noWhiteSpace]} />
             <label htmlFor='newPassword'>New Password</label>

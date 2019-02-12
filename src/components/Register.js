@@ -19,12 +19,12 @@ export class Register extends Component{
     render() {
     return(
         <div role="container" className="registerContainer">
-          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-            <h5>New User</h5>
+          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} role='register'>
+            <h3>New User</h3>
             <label htmlFor='newUsername'>New UserName</label>
-            <Field component={Input} type='text' name='newUsername' element='input' validate={[required, usernameLength, noWhiteSpace]}  />
+            <Field component={Input} type='text' className= 'newUserName' name='newUsername' element='input' validate={[required, usernameLength, noWhiteSpace]}  />
             <label htmlFor='newPassword'>New Password</label>
-            <Field component={Input} type='password' name='newPassword' element='input' validate={[required, passwordLength, noWhiteSpace]} />
+            <Field component={Input} type='password' className= 'newPassword' name='newPassword' element='input' validate={[required, passwordLength, noWhiteSpace]} />
             <button type='submit' disabled={this.props.loading}>Confirm</button>
           </form>
         </div>

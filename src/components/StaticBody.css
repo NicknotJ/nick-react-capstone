@@ -2,5 +2,15 @@
     display: block;
     margin: 15px auto;
     padding: 15px;
-    background-color: blue;
+    background-color: #C3C6FF;
+    max-width: 550px;
+    box-shadow: 5px 5px 10px 1px #10101A;
+}
+
+.tutorialImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 500px;
 }

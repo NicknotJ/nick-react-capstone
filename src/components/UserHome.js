@@ -321,8 +321,9 @@ class UserHome extends Component {
                       <p>Afterwards, Click on a Button Above to Rate the Pain</p>
                       <p>The Scale is from 1 (weakest) to 5 (strongest)</p>
                     </div>
+                    <LogOut handleClick={e => this.handleLogout(e)} />
                 </div>
-                <LogOut handleClick={e => this.handleLogout(e)} />
+                
             </div>
         )
     }

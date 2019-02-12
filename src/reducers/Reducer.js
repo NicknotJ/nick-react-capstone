@@ -1,4 +1,4 @@
-import {USER_REGISTER_SUCCESS, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS} from '../actions/user';
+import {USER_REGISTER_SUCCESS, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS} from '../actions/user';
 import {SET_PAIN_LOCATION, ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
 import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo} from '../time';
 import { CHANGE_DISPLAY_TIME } from '../actions/time';
@@ -40,6 +40,21 @@ export default (state = initialState, action) => {
             loading: false
         });
     }
+    if(action.type === USER_LOGOUT_REQUEST){
+        return Object.assign({}, state, {
+            loading: true
+        });
+    }
+    if(action.type === USER_LOGOUT_SUCCESS){
+        return Object.assign({}, initialState, {
+        })
+    }
+    // if(action.type === USER_LOGOUT_FAILURE){
+    //     return Object.assign({}, state, {
+    //         message: action.error.message,
+    //         loading: false
+    //     })
+    // }
     if(action.type === ADD_PAIN){
         return Object.assign({}, state, {
             addPain: true,

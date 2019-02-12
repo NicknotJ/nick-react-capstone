@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 export function RatePain(props){
 
-//Current Issues: handleSubmit is not passed down
-//currently cannot access redux store for addPain
 
     return (
         <div role='rate-pain'>

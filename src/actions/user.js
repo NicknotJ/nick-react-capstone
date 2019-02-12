@@ -48,6 +48,26 @@ export const userLogin = user => dispatch => {
         dispatch(userLoginError(err))
     })
 }
+export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';
+export const userLogoutRequest = () => ({
+    type: USER_LOGOUT_REQUEST
+});
+
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
+export const userLogoutSuccess = () => ({
+    type: USER_LOGOUT_SUCCESS
+});
+
+export const USER_LOGOUT_FAILURE = 'USER_LOGOUT_FAILURE';
+export const userLogoutFailure = error => ({
+    type: USER_LOGOUT_FAILURE,
+    error
+})
+
+export const userLogout = () => dispatch => {
+    dispatch(userLogoutSuccess());
+    //Logout failure protocol?
+}
 
 export const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
 export const userRegisterSuccess = () => ({

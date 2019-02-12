@@ -3,13 +3,14 @@ import ImageMapper from 'react-image-mapper';
 import {connect} from 'react-redux';
 import './UserHome.css';
 import { submitPain, requestPain, addPain } from '../actions/pain';
+import {userLogout} from '../actions/user';
 import { changeDisplayTime } from '../actions/time';
 import moment from 'moment';
 import {sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
 import ChangeDate from './UserHomeComponents/ChangeDate';
 import RatePain from './UserHomeComponents/RatePain';
 import Message from './UserHomeComponents/Message';
-import {loadToken} from '../local-storage';
+import {loadToken, clearToken} from '../local-storage';
 import {LogOut} from './UserHomeComponents/LogOut';
 class UserHome extends Component {
     constructor(props){
@@ -233,6 +234,13 @@ class UserHome extends Component {
     console.log(rgbaValue);
     return rgbaValue;
     }
+
+    handleLogout(e){
+        e.preventDefault();
+        clearToken();
+        this.props.dispatch(userLogout())
+        //dispatch action to change loggedIn to false. Reset to initial state.
+    }
     
     render(){
 
@@ -250,7 +258,7 @@ class UserHome extends Component {
                     <p>Afterwards, click on a button above to rate the pain</p>
                     <p>The scale is from 1 (weakest) to 5 (strongest)</p>
                 </div>
-                <LogOut />
+                <LogOut handleClick={e => this.handleLogout(e)} />
             </div>
         )
     }

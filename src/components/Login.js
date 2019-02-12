@@ -13,7 +13,7 @@ const usernameLength = lengthRequirements({min: 2, max: 31});
 
 export class Login extends Component{
     onSubmit(values) {
-        //this should probably all be dispatches and actions
+
         const {username, password} = values;
         const user = {username, password};
         console.log('I, the login, ran');

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ChangeDate.css'
-export default function ChangeDate(props){
 
+export default function ChangeDate(props){
 
 return (
         <select className='selectDate' role='display-date' onChange={e => {props.onDisplayChange(e)}}>

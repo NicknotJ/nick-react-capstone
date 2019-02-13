@@ -5,6 +5,7 @@ import './Message.css'
 export class Message extends Component{
     render(){
     if(this.props.message){
+      console.log(this.props.message);
       return (        
       <div role='container' className='messageContainer'>
         <span role='message'><p>{this.props.message}</p></span>

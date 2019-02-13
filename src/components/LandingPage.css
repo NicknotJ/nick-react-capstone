@@ -1,30 +1,44 @@
-body {
-    background-color: #2A34E7;
+
+
+.landingPageWrapper{
+    background-color: #6E75FF;
 }
 
-.landingPageWrapper {
+.landingPageWrapper > header {
+    background-color: #2A34E7
+}
+
+.landingImageCopy {
     width: 90%;
     max-width: 600px;
     position: relative;
-    background-color: #6E75FF;
+    background-color: #C3C6FF;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     box-shadow: 5px 5px 10px 1px #10101A;
 }
 
-.landingPageWrapper > img {
+.landingImageCopy > img {
     float: right;
     width: 80%;
+    padding: 2px;
+    box-shadow: 2px 2px 5px 1px #10101A;
 }
 
-.landingPageWrapper > p {
+.landingImageCopy > p {
     font-size: 20px;
 }
 
 @media only screen and (max-width: 500px){
     /*for mobile devices*/
-    .landingPageWrapper > p {
+    .landingImageCopy > p {
         font-size: 12px;
+    }
+    .landingImageCopy {
+        height: 500px;
+    }
+    .landingImageCopy > img {
+        width: 70%;
     }
 }

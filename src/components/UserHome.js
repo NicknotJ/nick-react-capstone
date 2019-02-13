@@ -306,6 +306,7 @@ class UserHome extends Component {
         
        
         return (
+          <body>
             <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
                 <div className='dateViewContainer' role='container'>
@@ -323,8 +324,8 @@ class UserHome extends Component {
                     </div>
                     <LogOut handleClick={e => this.handleLogout(e)} />
                 </div>
-                
             </div>
+          </body>
         )
     }
 }

@@ -1,0 +1,30 @@
+body {
+    background-color: #2A34E7;
+}
+
+.landingPageWrapper {
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    background-color: #6E75FF;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    box-shadow: 5px 5px 10px 1px #10101A;
+}
+
+.landingPageWrapper > img {
+    float: right;
+    width: 80%;
+}
+
+.landingPageWrapper > p {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 500px){
+    /*for mobile devices*/
+    .landingPageWrapper > p {
+        font-size: 12px;
+    }
+}

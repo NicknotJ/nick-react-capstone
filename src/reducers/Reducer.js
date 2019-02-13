@@ -1,15 +1,12 @@
-import {USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS} from '../actions/user';
+import {USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, LANDING_PAGE_CLICK} from '../actions/user';
 import {SET_PAIN_LOCATION, ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
 import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo} from '../time';
 import { CHANGE_DISPLAY_TIME } from '../actions/time';
 import { SET_AUTH_TOKEN, CLEAR_AUTH, AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS } from '../actions/auth';
-import { bindActionCreators } from 'redux';
-// const aDate = new Date();
-// const anotherDate = new Date();
-// // const initialDate = aDate.setDate(aDate.getDate()-7);
-// const isoString = aDate.toISOString();
-// let sevenDays = anotherDate.setDate(anotherDate.getDate() = 7);
+
 const initialState = {
+    //Shuffles user to landing page (or allows them to bypass when false)
+    landingPage: true,
     //Determines if user sees userpage or login/registration
     loggedIn: false,
     //Will help prevent multiple requests to server
@@ -123,6 +120,11 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, {
             addPain: false,
             message: action.error.message
+        })
+    }
+    if(action.type === LANDING_PAGE_CLICK){
+        return Object.assign({}, state, {
+            landingPage: false
         })
     }
     return state;

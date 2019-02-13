@@ -105,3 +105,8 @@ export const userRegister = newUser => dispatch => {
         dispatch(userRegisterError(err))
 })
 }
+
+export const LANDING_PAGE_CLICK = 'LANDING_PAGE_CLICK';
+export const landingPageClick = () => ({
+    type: LANDING_PAGE_CLICK
+});

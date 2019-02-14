@@ -34,7 +34,6 @@ export default (state = initialState, action) => {
         });
     } 
     else if(action.type === USER_LOGIN_SUCCESS){
-        console.log(action);
         return Object.assign({}, state, {
             loggedIn: true,
             username: action.user, //is this too much at once?

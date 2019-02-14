@@ -19,11 +19,9 @@ describe('<LandingPage />', () => {
         const wrapper = shallow(<LandingPage />);
         expect(wrapper.hasClass('landingPageWrapper')).toEqual(true);
     });
-    
-    //This is basically the same as above, but fails.
+
     it('Should have a class: landingImageCopy', () => {
         const wrapper = shallow(<LandingPage  />);
-        console.log(wrapper.debug());
         expect(wrapper.find('landingImageCopy').exists());
     });
     it('Should have a class: test', () => {

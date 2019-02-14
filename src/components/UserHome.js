@@ -54,7 +54,6 @@ export class UserHome extends Component {
         let location = this.props.painLocation;
         let date = moment();
         let locationFiltered = this.filterPain(this.props.userData, location);
-        console.log(locationFiltered);
         let isSame;
         if(locationFiltered){
             console.log('we will compare times!');
@@ -79,15 +78,11 @@ export class UserHome extends Component {
         let username = this.props.username;
         let data = {painLevel, location, username, date};
 
-        
         this.props.dispatch(submitPain(data, loadToken()));
-        this.props.dispatch(requestPain(loadToken()));
+        // this.props.dispatch(requestPain(loadToken()));
         }
     }
-    //Check this (testing only)
-    _onMouseClick(e) {
-        console.log({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY});
-    };
+
 
     onDisplayDateChange(e){
         console.log(this.state);
@@ -321,7 +316,6 @@ export class UserHome extends Component {
     averagePain = this.averagePain(filteredData);
     averageLength = this.averageDate(filteredData);
     rgbaValue = this.painColor(averagePain) + this.painShade(averageLength);
-    console.log(rgbaValue);
     return rgbaValue;
     }
 
@@ -338,7 +332,7 @@ export class UserHome extends Component {
        
         return (
           <body>
-            <div onClick={e => {this._onMouseClick(e)}} role='container' className='UserHome'>
+            <div role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
                 <div className='dateViewContainer' role='container'>
                     <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>

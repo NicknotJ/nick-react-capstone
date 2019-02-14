@@ -41,8 +41,7 @@ export const storeAuthInfo = (authToken, dispatch) => {
     saveToken(authToken);
 };
 
-//login function is in user
-
+//Check 
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
     const token = getState().auth.authToken; //update to grabbing from local storage

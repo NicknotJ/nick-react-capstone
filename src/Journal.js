@@ -9,7 +9,7 @@ import UserHome from './components/UserHome';
 import Message from './components/UserHomeComponents/Message';
 import LandingPage from './components/LandingPage.js';
 
-class Journal extends Component {
+export class Journal extends Component {
   render() {
     //call the actions that check the local storage...
     if(this.props.landingPage){
@@ -18,17 +18,17 @@ class Journal extends Component {
       )
     } else if(this.props.loggedIn){
       return (
-        <div className="UserHomePage">
+        <div role ='container' className="UserHomePage">
           <UserHome />
         </div>
       )
     } else {
     return (
-      <div className="Journal">
+      <div role='container' className="Journal">
           <Banner />
           <StaticBody />
           <Message />
-          <div className='userInputs'>
+          <div role='container' className='userInputs'>
             <Login />
             <Register />
           </div>

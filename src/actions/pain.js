@@ -31,7 +31,7 @@ export const submitPainSuccess = () => ({
 export const SUBMIT_PAIN_ERROR = 'SUBMIT_PAIN_ERROR';
 export const submitPainError = error => ({
     type: SUBMIT_PAIN_ERROR,
-    payload: error
+    error
 });
 
 export const submitPain = (pain, token) => dispatch => {
@@ -53,6 +53,9 @@ export const submitPain = (pain, token) => dispatch => {
     })
     .then(result => {
         dispatch(submitPainSuccess(result));
+    })
+    .then(() => {
+        dispatch(requestPain(token));
     })
     .catch(error => {
         dispatch(submitPainError(error));

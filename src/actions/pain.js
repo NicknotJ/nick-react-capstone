@@ -25,7 +25,6 @@ export const submitPainRequest = () => ({
 export const SUBMIT_PAIN_SUCCESS = 'SUBMIT_PAIN_SUCCESS';
 export const submitPainSuccess = () => ({
     type: SUBMIT_PAIN_SUCCESS
-
 });
 
 //Should display a meaningful error to the user

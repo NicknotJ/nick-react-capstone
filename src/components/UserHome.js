@@ -12,7 +12,7 @@ import Message from './UserHomeComponents/Message';
 import {loadToken, clearToken} from '../local-storage';
 import {LogOut} from './UserHomeComponents/LogOut';
 import ViewButton from './UserHomeComponents/ViewButton';
-class UserHome extends Component {
+export class UserHome extends Component {
     constructor(props){
         super(props);
     this.state = {
@@ -78,8 +78,9 @@ class UserHome extends Component {
         let painLevel = num;
         let username = this.props.username;
         let data = {painLevel, location, username, date};
-        this.props.dispatch(submitPain(data, loadToken()));
+
         
+        this.props.dispatch(submitPain(data, loadToken()));
         this.props.dispatch(requestPain(loadToken()));
         }
     }

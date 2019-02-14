@@ -3,7 +3,7 @@ import './LandingPage.css'
 import {connect} from 'react-redux';
 import { landingPageClick } from '../actions/user';
 
-class LandingPage extends Component{
+export class LandingPage extends Component{
 
     //function: changes redux state for LandingPage to false onClick
     imgSource(){
@@ -24,7 +24,7 @@ class LandingPage extends Component{
             <h3>Easily Record and View Your Pain Data in 2-3 Clicks</h3>
           </header>
           <div role='container' className='landingImageCopy'>
-            <img onClick={e => {this.onClick()}} alt='Click me to enter the site' src={this.imgSource()} /> 
+            <img className='test' onClick={e => {this.onClick()}} alt='Click me to enter the site' src={this.imgSource()} /> 
             <p>Tired of writing down all your nagging pains?</p>
             <p>Worried that you'll forget something important before doctor visits?</p>
             <p>Want an easy overview of both your various pains' intensities AND frequencies?</p>

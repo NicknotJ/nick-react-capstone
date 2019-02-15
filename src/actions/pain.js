@@ -94,7 +94,7 @@ export const requestPain = (token) => dispatch => {
         
     })
     .catch(error => {
-        // dispatch(requestPainError(error));
+        dispatch(requestPainFailure(error));
     })
 };
 

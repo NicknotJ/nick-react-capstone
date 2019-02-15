@@ -125,6 +125,11 @@ export default (state = initialState, action) => {
             landingPage: false
         })
     }
-    // console.log(JSON.stringify(state));
+    else if(action.type === REQUEST_PAIN_FAILURE){
+        return Object.assign({}, state, {
+            loading: false,
+            message: action.error
+        })
+    }
     return state;
 }

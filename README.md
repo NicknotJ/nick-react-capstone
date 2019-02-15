@@ -13,8 +13,17 @@ Image of the login page:
 Image of the UserHome Page (this is where the "magic" happens):
 ![Image of the UserHome Page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLandingPage.png?raw=true)
 
+TechStack for FrontEnd: HTML, CSS, JavaScript, ReactJS, Moment*, and React-Image-Mapper**.
+TechStack for the BackEnd: Node.js, Mongoose, and MongoDB (noSQL).
 
+*Moment can be found here: https://www.npmjs.com/package/moment
+**React-Image-Mapper can be found here: https://www.npmjs.com/package/react-image-mapper
 
+The database lives over at MLab (https://mlab.com/welcome/)
+The server that handles client requests (user creation, login, pain data submission, and pain data requests) lives on Heroku.
+The client-app that handles the front-end (once it receives the data, it also handles the interpretation of said data) lives on Heroku (https://www.heroku.com/).
+
+If you would like to use this app or are just curious about it, feel free to contact me at FrankyMcJay@gmail.com.
 
 
 BELOW IS REACT'S GENERIC README FOR REACT PROJECTS

@@ -26,9 +26,9 @@ export class LandingPage extends Component{
           <div role='container' className='landingImageCopy'>
             <img className='test' onClick={e => {this.onClick()}} alt='Click me to enter the site' src={this.imgSource()} /> 
             <p>Tired of writing down all your nagging pains?</p>
-            <p>Worried that you'll forget something important before doctor visits?</p>
-            <p>Want an easy overview of both your various pains' intensities AND frequencies?</p>
-            <h5>If so, click on the image to learn more!</h5>
+            <p>Then you'll love "Ouch, My Everything!"</p>
+            <p>Click on the body, then on a rating button. You're already done!</p>
+            <h5>Enter the site by clicking on the image!</h5>
             <p style={{'fontStyle': 'italic'}}>"Ouch, My Everything" does not provide medical advice. If suffering severe pain, please contact your doctor or another health care professional.</p>
           </div>
         </div>

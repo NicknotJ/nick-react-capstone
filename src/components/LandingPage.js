@@ -28,7 +28,7 @@ export class LandingPage extends Component{
             <p>Tired of writing down all your nagging pains?</p>
             <p>Then you'll love "Ouch, My Everything!"</p>
             <p>Click on the body, then on a rating button. You're already done!</p>
-            <h5>Enter the site by clicking on the image!</h5>
+            <h3>Enter the site by clicking on the image!</h3>
             <p style={{'fontStyle': 'italic'}}>"Ouch, My Everything" does not provide medical advice. If suffering severe pain, please contact your doctor or another health care professional.</p>
           </div>
         </div>

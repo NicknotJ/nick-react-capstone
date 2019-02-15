@@ -4,7 +4,14 @@ The goal of the app is to allow users to easily keep track of pain and provide a
 
 As of February 15, 2019, the app is currently being hosted here: https://react-capstone-pain-journal.herokuapp.com/
 
+Image of the landing page:
+![Image of Landing Page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLandingPage.png?raw=true)
 
+Image of the login page:
+![Image of the login page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLoginPage.png?raw=true)
+      
+Image of the UserHome Page (this is where the "magic" happens):
+![Image of the UserHome Page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLandingPage.png?raw=true)
 
 
 

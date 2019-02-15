@@ -10,7 +10,6 @@ const usernameLength = lengthRequirements({min: 2, max: 31});
 
 export class Register extends Component{
     onSubmit(values) {
-        console.log(values);
         const username = values.newUsername;
         const password = values.newPassword;
         const newUser = {username, password};

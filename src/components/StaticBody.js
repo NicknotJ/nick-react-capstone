@@ -1,6 +1,5 @@
 import React from 'react';
 import './StaticBody.css';
-import { required } from '../validators/user';
 export default function StaticBody(props){
 const staticImage = require('../images/Free-Body-Diagram-Template-Download.jpg');
 

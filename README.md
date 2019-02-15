@@ -13,7 +13,7 @@ Image of the login page:
 Image of the UserHome Page (this is where the "magic" happens):
 ![Image of the UserHome Page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLandingPage.png?raw=true)
 
-TechStack for FrontEnd: HTML, CSS, JavaScript, ReactJS, Moment*, and React-Image-Mapper**.
+TechStack for FrontEnd: HTML, CSS, JavaScript, ReactJS, Redux, Moment*, and React-Image-Mapper**.
 TechStack for the BackEnd: Node.js, Mongoose, and MongoDB (noSQL).
 
 *Moment can be found here: https://www.npmjs.com/package/moment

@@ -24,28 +24,23 @@ export const userLoginError = error => ({
 
 export const userLogin = user => dispatch => {
     dispatch(userRequest());
-    // dispatch(clearAuth()); (if!~~~auth, reset to null)
     fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user)
     })
     .then(result => {
-        console.log(result);
         if(!result.ok){
             return Promise.reject(result.statusText);
         }
         return result.json();
     })
     .then(res => {
-        console.log(res);
         storeAuthInfo(res.authToken, dispatch);
-        console.log(user);
         dispatch(userLoginSuccess(user.username));
     })
     //below is untested
     .catch(err => {
-        console.log(err);
         dispatch(userLoginError(err))
     })
 }
@@ -91,17 +86,12 @@ export const userRegister = newUser => dispatch => {
         body: JSON.stringify(newUser)
     })
     .then(response => {
-        console.log(response);
         if(!response.ok){
-            console.log('rejecting the promise in userRegister');
-
             return Promise.reject(response);
         }
         dispatch(userRegisterSuccess())
     })
     .catch(err => {
-        console.log(`Catch err ran`, err);
-        console.log(err.statusText);
         dispatch(userRegisterError(err))
 })
 }

@@ -16,7 +16,6 @@ export class Login extends Component{
 
         const {username, password} = values;
         const user = {username, password};
-        console.log('I, the login, ran');
         this.props.dispatch(userLogin(user));
     }
     render() {

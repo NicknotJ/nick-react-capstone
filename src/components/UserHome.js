@@ -8,7 +8,6 @@ import moment from 'moment';
 import {sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
 import ChangeDate from './UserHomeComponents/ChangeDate';
 import RatePain from './UserHomeComponents/RatePain';
-import Message from './UserHomeComponents/Message';
 import {loadToken, clearToken} from '../local-storage';
 import {LogOut} from './UserHomeComponents/LogOut';
 import ViewButton from './UserHomeComponents/ViewButton';
@@ -25,7 +24,6 @@ export class UserHome extends Component {
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
     componentDidMount(){
-        console.log(`componentDidMount`);
         this.props.dispatch(requestPain(loadToken()));
     };
 
@@ -56,17 +54,13 @@ export class UserHome extends Component {
         let locationFiltered = this.filterPain(this.props.userData, location);
         let isSame;
         if(locationFiltered){
-            console.log('we will compare times!');
             let today = moment();
             locationFiltered.forEach(data => {
                 let otherDay = moment(data.date);
                 if(today.diff(otherDay, 'days') === 0){
-                    console.log('the if is runnin!')
                     isSame = true;
-                    console.log(isSame);
                 }
-                }
-            )
+            })
         }
         if(isSame){
             return this.setState({
@@ -79,13 +73,11 @@ export class UserHome extends Component {
         let data = {painLevel, location, username, date};
 
         this.props.dispatch(submitPain(data, loadToken()));
-        // this.props.dispatch(requestPain(loadToken()));
         }
     }
 
 
     onDisplayDateChange(e){
-        console.log(this.state);
         let time;
         let days;
         if(e.target.value === 'One Week'){
@@ -112,8 +104,7 @@ export class UserHome extends Component {
           time = oneYearAgo;
           days = 365;    
         }
-        this.setState({displayValue: time, days: days}, () => {
-        console.log("SetState's Callback Function.", this.state)})
+        this.setState({displayValue: time, days: days});
     }
 
     handleView(e){
@@ -232,7 +223,7 @@ export class UserHome extends Component {
         {_id:'36', coords: [88,417,80,430,103,438,112,417], shape:"poly", preFillColor: this.preFillFill(36, this.props.userData)},
         {_id:'37', coords: [134,417,141,436,161,433,161,417], shape:"poly", preFillColor: this.preFillFill(37, this.props.userData)}]};
         
-        const AREAS_MAP_BACK = {name: 'BackBody', areas: [  
+        const AREAS_MAP_BACK = {name: 'BackBody', alt: "back of human body", areas: [  
         {_id:'38', coords: [123,12,123,40,105,40,103,21], shape:"poly", preFillColor: this.preFillFill(38, this.props.userData)},
         {_id:'39', coords: [123,13,124,40,139,40,139,20], shape: "poly", preFillColor: this.preFillFill(39, this.props.userData)},
         {_id:'40', coords: [123,41,106,71], shape:"rect", preFillColor: this.preFillFill(40, this.props.userData)},
@@ -280,12 +271,12 @@ export class UserHome extends Component {
         } else if(this.state.front){
             return (
               <div className='frontImageWrapper'>
-                <ImageMapper imgWidth={248} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP_FRONT} />
+                <ImageMapper alt="Front of human body" imgWidth={248} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onLoad={e => {}} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP_FRONT} />
               </div>
             )
         } else { return (
             <div role='container' className='backImageWrapper'>
-              <ImageMapper imgWidth={248} className='backImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} map={AREAS_MAP_BACK}/>
+              <ImageMapper alt="Back of human body" imgWidth={248} className='backImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} map={AREAS_MAP_BACK}/>
             </div>
         )
         }
@@ -327,11 +318,7 @@ export class UserHome extends Component {
     }
     
     render(){
-
-        
-       
         return (
-          <body>
             <div role='container' className='UserHome'>
                 <h3>{this.props.username}'s Pain Journal</h3>
                 <div className='dateViewContainer' role='container'>
@@ -350,7 +337,6 @@ export class UserHome extends Component {
                     <LogOut handleClick={e => this.handleLogout(e)} />
                 </div>
             </div>
-          </body>
         )
     }
 }

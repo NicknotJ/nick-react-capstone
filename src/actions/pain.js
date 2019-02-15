@@ -15,13 +15,13 @@ export const addPain = location => ({
     location
 });
 
-// //Lockout the user from submitting more pain?
+//Lockout the user from submitting more pain
 export const SUBMIT_PAIN_REQUEST = 'SUBMIT_PAIN_REQUEST';
 export const submitPainRequest = () => ({
     type: SUBMIT_PAIN_REQUEST
 });
 
-//Allow the user to submit more pain?
+//Allow the user to submit more pain
 export const SUBMIT_PAIN_SUCCESS = 'SUBMIT_PAIN_SUCCESS';
 export const submitPainSuccess = () => ({
     type: SUBMIT_PAIN_SUCCESS
@@ -35,7 +35,6 @@ export const submitPainError = error => ({
 });
 
 export const submitPain = (pain, token) => dispatch => {
-    console.log(pain);
     dispatch(submitPainRequest())
     return fetch(`${API_BASE_URL}/pain`, {
       method: "POST",

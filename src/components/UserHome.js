@@ -24,6 +24,7 @@ export class UserHome extends Component {
     }
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
+    //Grabs the painData related to user (user info is gotten from token)
     componentDidMount(){
         this.props.dispatch(requestPain(loadToken()));
     };
@@ -38,6 +39,7 @@ export class UserHome extends Component {
         }
     };
 
+    //Handles clicks ON the image. grabs location data, resets part of state on Userhome
     handleClick(e){
         let data = {};
         data.location = e._id;
@@ -49,6 +51,7 @@ export class UserHome extends Component {
         this.props.dispatch(addPain(data.location));
     }
 
+    //When button is clicked, this checks if location was rated today. If not, submits the pain to server
     handleSubmit(e, num){
         let location = this.props.painLocation;
         let date = moment();
@@ -77,7 +80,7 @@ export class UserHome extends Component {
         }
     }
 
-
+    //handles the selector. Changes the state which affects preFillFill
     onDisplayDateChange(e){
         let time;
         let days;
@@ -108,6 +111,7 @@ export class UserHome extends Component {
         this.setState({displayValue: time, days: days});
     }
 
+    //Changes view from front of body to back. both have unique locations
     handleView(e){
         e.preventDefault();
         let view = !this.state.front;
@@ -116,7 +120,6 @@ export class UserHome extends Component {
         }, ()=> {})
     }
 
-    //CUSTOMIZE THE COLORS! opaque is your length
     //filter (only the pains with the correct id)
     filterPain(data, location){
         if(!data){
@@ -146,6 +149,7 @@ export class UserHome extends Component {
         }
     }
 
+    //returns average of someone had X pain in X location out of display days
     averageDate(data){
         if(!data){
           return undefined;
@@ -156,6 +160,7 @@ export class UserHome extends Component {
         return average;
     }
 
+    //returns the average intensity of the pain (see painColor)
     averagePain(data){
         if(!data){
           return undefined;
@@ -168,6 +173,7 @@ export class UserHome extends Component {
         return (sum / i)
     }
 
+    //this uses averageDate's average to affect opaqueness (more=more days of pain)
     painShade(painData){
         if(!painData){
             return undefined
@@ -184,6 +190,7 @@ export class UserHome extends Component {
         } else return ' .01)';
     }
 
+    //This will return the correct image mapper (front or back). Also controls loading image
     loadingImg(){
     const AREAS_MAP_FRONT = { name: 'FrontBody', areas: [{ _id:'0', coords: [121,12,104,21,102,32,121,32], shape:'poly', preFillColor: this.preFillFill(0, this.props.userData)},
       {_id:'1', coords: [122,12,122,32,140,32,136,18], shape:'poly', preFillColor: this.preFillFill(1, this.props.userData)},
@@ -280,11 +287,8 @@ export class UserHome extends Component {
             )
         }
     }
-   
-    newMethod() {
-        return this;
-    }
 
+    //part of what preFillFill returns, represents intensity of pain (red= more intense, blue= less)
     painColor(painLevel) {
         if(!painLevel){
             return undefined
@@ -295,6 +299,7 @@ export class UserHome extends Component {
         } else return 'rgba(0, 0, 255,'
     }
 
+    //uses various methods to filter the pain on location, then get averagePain and averageLength (of pain). Ultimately returns RGBA string
     preFillFill(location, userData){
     let rgbaValue; //returned value for color/shade
     let locationFilteredData; //will be filtered on location

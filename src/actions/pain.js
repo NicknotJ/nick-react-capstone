@@ -90,13 +90,10 @@ export const requestPain = (token) => dispatch => {
         return res.json()
     })
     .then(result => {
-        console.log('The following is the result');
-        console.log(result);
         dispatch(requestPainSuccess(result));
         
     })
     .catch(error => {
-        console.log(error);
         // dispatch(requestPainError(error));
     })
 };

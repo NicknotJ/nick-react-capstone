@@ -13,6 +13,6 @@ const inputProps = {
 
 describe('<Input />', () => {
     it('Smoke Test', () => {
-        shallow(<Input meta={metaProps} input={inputProps}/>);
+        shallow(<Input meta={metaProps} input={inputProps} element={() => {}}/>);
     })
 })

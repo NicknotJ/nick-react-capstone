@@ -1,4 +1,4 @@
-import {USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, LANDING_PAGE_CLICK} from '../actions/user';
+import {TUTORIAL_CLICK, tutorialClick, USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, LANDING_PAGE_CLICK} from '../actions/user';
 import {SET_PAIN_LOCATION, ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
 import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo} from '../time';
 
@@ -21,7 +21,8 @@ export const initialState = {
     displayDate: sevenDaysAgo,
     message: 'Please Log In, Register, or Click the Image Above to Learn More',
     painLocation: '',
-    token: null
+    token: null,
+    tutorial: 0
 }
 
 export default (state = initialState, action) => {
@@ -129,6 +130,11 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, {
             loading: false,
             message: action.error
+        })
+    }
+    else if(action.type === TUTORIAL_CLICK){
+        return Object.assign({}, state, {
+            tutorial: state.tutorial + action.number
         })
     }
     return state;

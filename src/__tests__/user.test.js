@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import {userLogin, USER_LOGIN_SUCCESS, userLoginSuccess, USER_LOGIN_ERROR, userLoginError} from '../actions/user';
+import {tutorialClick, TUTORIAL_CLICK, userLogin, USER_LOGIN_SUCCESS, userLoginSuccess, USER_LOGIN_ERROR, userLoginError} from '../actions/user';
 import {API_BASE_URL} from '../config';
 import '../setupTests';
 
@@ -22,26 +22,11 @@ describe('userLoginError', () => {
     })
 })
 
-// describe('userLogin', () => {
-//     it('should dispatch fetch with...', () => {
-//         const user = {username: "hello", password: "password123"};
-//         global.fetch = jest.fn().mockImplementation(() => {
-//             return Promise.resolve({
-//                 ok: true,
-//                 json(){
-//                     return user;
-//                 }
-//             })
-//         })
-//         const dispatch = jest.fn();
-//         return userLogin(user)(dispatch).then(() => {
-//             expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/auth/login`, {
-//                 method: "POST",
-//                 headers: {"Content-Type": "application/json"},
-//                 body: JSON.stringify(user)
-//             })
-//         })
-
-//     })
-        
-// })
+describe('tutorialClick', () => {
+    it('should have a number and have a type of TUTORIAL_CLICK', () => {
+        let number = 1;
+        const action = tutorialClick(number);
+        expect(action.type).toEqual(TUTORIAL_CLICK);
+        expect(action.number).toEqual(number);
+    })
+})

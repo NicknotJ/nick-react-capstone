@@ -6,6 +6,7 @@
     max-width: 550px;
     width: 85%;
     box-shadow: 5px 5px 10px 1px #10101A;
+    text-align: center;
 }
 
 .tutorialImage{
@@ -14,4 +15,10 @@
     margin-right: auto;
     width: 98%;
     max-width: 500px;
+    max-height: 500px;
+}
+
+.imgContainer > h3 {
+    position: relative;
+    display: inline-block;
 }

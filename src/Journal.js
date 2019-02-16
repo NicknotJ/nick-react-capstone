@@ -9,6 +9,7 @@ import UserHome from './components/UserHome';
 import Message from './components/UserHomeComponents/Message';
 import LandingPage from './components/LandingPage.js';
 
+
 export class Journal extends Component {
   render() {
     //call the actions that check the local storage...
@@ -39,7 +40,8 @@ export class Journal extends Component {
 
 export const mapStateToProps = (state) => {
   return {loggedIn: state.reducer.loggedIn,
-          landingPage: state.reducer.landingPage
+          landingPage: state.reducer.landingPage,
+          tutorial: state.reducer.tutorial
   };
 }
 

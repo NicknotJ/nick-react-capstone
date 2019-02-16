@@ -100,3 +100,9 @@ export const LANDING_PAGE_CLICK = 'LANDING_PAGE_CLICK';
 export const landingPageClick = () => ({
     type: LANDING_PAGE_CLICK
 });
+
+export const TUTORIAL_CLICK = 'TUTORIAL_CLICK';
+export const tutorialClick = (number) => ({
+    type: TUTORIAL_CLICK,
+    number
+})

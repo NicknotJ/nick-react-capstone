@@ -35,13 +35,21 @@ export class StaticBody extends Component{
       return (<h3>By default, you will see your pain data displayed for the past seven days. Please use the drop down menu to change to fourteen days, one month, or even longer</h3>)
     }
   }
+  tutorialText(){
+    if(this.props.tutorial >= 4){
+      return (<h3>The tutorial is finished! Please register a new user</h3>)
+    } else if(this.props.tutorial === 0){
+      return (<h3>Click above to start the tutorial!</h3>);
+    } else {return (<h3>Click above to continue tutorial!</h3>);
+    }
+  }
 
 render(){
 return (
   <div role='container' className='imgContainer'>
     {this.displayText()}
     <img onClick={e => {this.props.dispatch(tutorialClick(1))}} alt='Static Image of Human Body' className='tutorialImage' src={this.displayImage()}/>
-    <h3>Click above to start/continue Tutorial!</h3>
+    {this.tutorialText()}
   </div>
   )
 }

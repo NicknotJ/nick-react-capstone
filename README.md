@@ -24,7 +24,7 @@ The server that handles client requests (user creation, login, pain data submiss
 The client-app that handles the front-end (once it receives the data, it also handles the interpretation of said data) lives on Heroku (https://www.heroku.com/).
 
 If you would like to use this app or are just curious about it, feel free to contact me at FrankyMcJay@gmail.com.
-
+If you want to mess around with a user that has fake data added, please feel free to use username: Test1 password: password123
 
 BELOW IS REACT'S GENERIC README FOR REACT PROJECTS
 

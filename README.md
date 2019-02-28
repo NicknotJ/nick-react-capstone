@@ -1,3 +1,5 @@
+Please note: App/Server might be asleep from 12:00 a.m. to 6:00 a.m. GMT
+
 Ouch, My Everything is an online pain journal that allows you to record your pain with just 2-3 clicks of a button (after login!). You can record pains based on location (over 70 locations total) and severity (1-5, 5 being the strongest). Viewing options are front only and back only while data filtering can be done based on date (all pains within 7 days, all pains within 14 days, 1 month, 3 months, 6 months, and 1 year). The app prefills locations' colors based on two attributes: the average pain intensity (red: heavy pain, green: medium pain, and blue: light pain) while the shade gives the user a general idea of how many days out of the current display view they've had that pain (the more opaque the color, the more days the user has had pain in that location).
 
 The goal of the app is to allow users to easily keep track of pain and provide a quick snapshot view of where, how badly, and how long they have hurt over the past X days/months/year.

@@ -190,6 +190,11 @@ export class UserHome extends Component {
         } else return ' .01)';
     }
 
+    load(){
+        let number = Math.random();
+        this.setState({fake: number})
+    }
+
     //This will return the correct image mapper (front or back). Also controls loading image
     loadingImg(){
     const AREAS_MAP_FRONT = { name: 'FrontBody', areas: [{ _id:'0', coords: [121,12,104,21,102,32,121,32], shape:'poly', preFillColor: this.preFillFill(0, this.props.userData)},
@@ -277,7 +282,7 @@ export class UserHome extends Component {
         } else if(this.state.front){
             return (
               <div className='frontImageWrapper'>
-                <ImageMapper alt="Front of human body" imgWidth={248} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onLoad={e => {}} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP_FRONT} />
+                <ImageMapper onLoad={() => this.load()} alt="Front of human body" imgWidth={248} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onLoad={e => {}} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP_FRONT} />
               </div>
             )
         } else { return (

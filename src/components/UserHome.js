@@ -330,8 +330,8 @@ export class UserHome extends Component {
         
         return (
             <div role='container' className='UserHome'>
-                <h3>{this.props.username}'s Pain Journal</h3>
                 <div className='dateViewContainer' role='container'>
+                    <h3>{this.props.username}'s Pain Journal</h3>
                     <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                     <ViewButton handleClick={e => this.handleView(e)} />
                     {this.displayError()}

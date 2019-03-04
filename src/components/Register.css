@@ -1,12 +1,13 @@
 .registerContainer {
     position: absolute;
     display: inline-block;
-    background-color: #2A34E7;
+    background-color: #AAFEB5;
     text-align: center;
     width: 40%;
     right: 0px;
     margin-bottom: 5px;
-    box-shadow: 5px 5px 10px 1px #10101A;
+    box-shadow: 1px 1px 1px 1px #10101A;
+    padding: 10px;
 }
 
 input {

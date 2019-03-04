@@ -1,29 +1,27 @@
 
 
 .landingPageWrapper{
-    background-color: #6E75FF;
+    background-color: #B2CEFE;
 }
 
 .landingPageWrapper > header {
-    background-color: #2A34E7
+    background-color: #FFE1AB
 }
 
 .landingImageCopy {
     width: 90%;
     max-width: 600px;
     position: relative;
-    background-color: #C3C6FF;
+    background-color: #D7B0FE;
     margin-left: auto;
     margin-right: auto;
-    padding: 3%;
-    box-shadow: 5px 5px 10px 1px #10101A;
+    padding: 5%;
+    box-shadow: 1px 1px 2px 1px #10101A;
 }
 
 .landingImageCopy > img {
     float: right;
     width: 80%;
-    padding: 2px;
-    box-shadow: 2px 2px 5px 1px #10101A;
 }
 
 .landingImageCopy > p {

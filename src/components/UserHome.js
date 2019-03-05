@@ -20,7 +20,8 @@ export class UserHome extends Component {
         displayError: '',
         isDisplayError: false,
         days: 7,
-        front: true
+        front: true,
+        number: 0
     }
     this.onDisplayDateChange = this.onDisplayDateChange.bind(this);
 }
@@ -178,20 +179,20 @@ export class UserHome extends Component {
         if(!painData){
             return undefined
         } else if (painData > .9){
-            return ' .9)';
+            return ' .95)';
         } else if (painData > .75){
-            return ' .75)';
+            return ' .8)';
         } else if (painData > .5){
-            return ' .5)';
+            return ' .6)';
         } else if (painData > .25){
-            return ' .25)';
+            return ' .35)';
         } else if (painData > .1){
-            return ' .1)';
-        } else return ' .01)';
+            return ' .25)';
+        } else return ' .1)';
     }
 
     load(){
-        let number = Math.random();
+        let number = this.state.number + 1;
         this.setState({fake: number})
     }
 

@@ -16,9 +16,11 @@
     width: 98%;
     max-width: 500px;
     max-height: 500px;
+    border: 1px solid black;
 }
 
 .imgContainer > h3 {
     position: relative;
     display: inline-block;
+    background-color: #EEEEEE;
 }

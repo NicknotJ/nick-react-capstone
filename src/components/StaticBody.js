@@ -26,7 +26,7 @@ export class StaticBody extends Component{
     if(this.props.tutorial === 0){
       return (<h1>Brief Tutorial for "Ouch, My Everything"</h1>)
     } else if(this.props.tutorial === 1){
-      return (<h3>First, create a new user and/or login!</h3>);
+      return (<h3>First, create a new user or login!</h3>);
     } else if(this.props.tutorial === 2){
       return (<h3>Next, select a location where you feel pain by clicking/touching</h3>);
     } else if(this.props.tutorial === 3){

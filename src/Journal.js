@@ -15,29 +15,23 @@ export class Journal extends Component {
     //call the actions that check the local storage...
     if(this.props.landingPage){
       return (
-        <main>
-          <LandingPage />
-        </main>
+        <LandingPage />
       )
     } else if(this.props.loggedIn){
       return (
-        <main>
-          <UserHome />
-        </main>
+        <UserHome />
       )
     } else {
     return (
-      <main>
-        <div role='container' className="Journal">
-          <Banner />
-          <StaticBody />
-          <Message />
-          <div role='container' className='userInputs'>
-            <Login />
-            <Register />
-          </div>
+      <div role='container' className="Journal">
+        <Banner />
+        <StaticBody />
+        <Message />
+        <div role='container' className='userInputs'>
+          <Login />
+          <Register />
         </div>
-      </main>
+      </div>
     );
   }}
 }

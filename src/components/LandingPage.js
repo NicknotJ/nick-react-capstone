@@ -25,11 +25,13 @@ export class LandingPage extends Component{
           </header>
           <div role='container' className='landingImageCopy'>
             <img className='test' onClick={e => {this.onClick()}} alt='Click me to enter the site' src={this.imgSource()} /> 
-            <p>Tired of writing down all your nagging pains?</p>
-            <p>Then you'll love "Ouch, My Everything!"</p>
-            <p>Click on the body, then on a rating button. You're already done!</p>
-            <h3>Enter the site by clicking on the image!</h3>
-            <p style={{'fontStyle': 'italic'}}>"Ouch, My Everything" does not provide medical advice. If suffering severe pain, please contact your doctor or another health care professional.</p>
+            <div role='container' className='landingInformation'>
+              <p>Tired of writing down all your nagging pains?</p>
+              <p>Then you'll love "Ouch, My Everything!"</p>
+              <p>Click on the body, then on a rating button. You're already done!</p>
+              <h3>Enter the site by clicking on the image!</h3>
+              <p style={{'fontStyle': 'italic'}}>"Ouch, My Everything" does not provide medical advice. If suffering severe pain, please contact your doctor or another health care professional.</p>
+            </div>
           </div>
         </div>
         )

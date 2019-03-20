@@ -32,9 +32,13 @@ html{
 
 .landingImageCopy > img {
     float: right;
-    width: 80%;
-    padding: 5%;
-    background-color: #B2CEFE
+    width: 70%;
+    padding: 5px;
+    background-color: #B2CEFE;
+}
+
+.landingInformation {
+    padding-right: 10px;
 }
 
 .landingImageCopy > p {
@@ -50,6 +54,6 @@ html{
         height: 500px;
     }
     .landingImageCopy > img {
-        width: 70%;
+        width: 60%;
     }
 }

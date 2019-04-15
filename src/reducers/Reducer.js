@@ -1,8 +1,8 @@
-import {TUTORIAL_CLICK, tutorialClick, USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_FAILURE, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, LANDING_PAGE_CLICK} from '../actions/user';
-import {SET_PAIN_LOCATION, ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
-import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo} from '../time';
+import { TUTORIAL_CLICK, USER_REGISTER_SUCCESS, USER_REGISTER_ERROR, USER_LOGIN_ERROR, USER_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, LANDING_PAGE_CLICK } from '../actions/user';
+import { ADD_PAIN, REQUEST_PAIN_FAILURE, REQUEST_PAIN_SUCCESS, SUBMIT_PAIN_ERROR, SUBMIT_PAIN_SUCCESS, SUBMIT_PAIN_REQUEST} from '../actions/pain'
+import { sevenDaysAgo } from '../time';
 
-import { SET_AUTH_TOKEN, CLEAR_AUTH, AUTH_ERROR, AUTH_REQUEST, AUTH_SUCCESS } from '../actions/auth';
+import { SET_AUTH_TOKEN, CLEAR_AUTH, AUTH_ERROR, AUTH_REQUEST } from '../actions/auth';
 
 export const initialState = {
     //Shuffles user to landing page (or allows them to bypass when false)

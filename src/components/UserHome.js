@@ -33,7 +33,7 @@ export class UserHome extends Component {
     displayError(){
         if(this.state.displayError){
             return (
-                <div className='errorMessage' role='container'>
+                <div className='errorMessage'>
                     <p>{this.state.displayError}</p>
                 </div>
             )
@@ -197,6 +197,7 @@ export class UserHome extends Component {
     }
 
     //This will return the correct image mapper (front or back). Also controls loading image
+    //This is doing way too much. Think it might be best to separate this (Might also fix select issue)
     loadingImg(){
     const AREAS_MAP_FRONT = { name: 'FrontBody', areas: [{ _id:'0', coords: [121,12,104,21,102,32,121,32], shape:'poly', preFillColor: this.preFillFill(0, this.props.userData)},
       {_id:'1', coords: [122,12,122,32,140,32,136,18], shape:'poly', preFillColor: this.preFillFill(1, this.props.userData)},
@@ -283,12 +284,12 @@ export class UserHome extends Component {
         } else if(this.state.front){
             return (
               <div className='frontImageWrapper'>
-                <ImageMapper onLoad={() => this.load()} alt="Front of human body" imgWidth={248} className='frontImage' fillColor={'rgba(255, 0, 0, 0.25)'} onLoad={e => {}} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageFront} map={AREAS_MAP_FRONT} />
+                <ImageMapper onLoad={() => this.load()} alt="Front of human body" imgWidth={248} className='frontImage imageWrapper' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} active={true} src={imageFront} map={AREAS_MAP_FRONT} />
               </div>
             )
         } else { return (
-            <div role='container' className='backImageWrapper'>
-              <ImageMapper alt="Back of human body" imgWidth={248} className='backImage' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} className='ImageWrapper' active={true} src={imageBack} map={AREAS_MAP_BACK}/>
+            <div className='backImageWrapper'>
+              <ImageMapper alt="Back of human body" imgWidth={248} className='backImage imageWrapper' fillColor={'rgba(255, 0, 0, 0.25)'} onClick={e => {this.handleClick(e)}} active={true} src={imageBack} map={AREAS_MAP_BACK}/>
             </div>
             )
         }
@@ -330,16 +331,16 @@ export class UserHome extends Component {
     render(){
         
         return (
-            <div role='container' className='UserHome'>
-                <div className='dateViewContainer' role='container'>
+            <div className='UserHome'>
+                <div className='dateViewContainer'>
                     <h3>{this.props.username}'s Pain Journal</h3>
                     <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                     <ViewButton handleClick={e => this.handleView(e)} />
                     {this.displayError()}
                 </div>
-                <div role='image-container' className='ImageWrapperContainer'>
+                <div className='ImageWrapperContainer'>
                     {this.loadingImg()}
-                    <div role='container' className='ratePainWrapper'>
+                    <div className='ratePainWrapper'>
                       <p>Click on the Image to Select Pain Location</p>
                       <RatePain handleSubmit={(e, num) => {this.handleSubmit(e, num)}}/>
                       <p>Afterwards, Click on a Button Above to Rate the Pain</p>

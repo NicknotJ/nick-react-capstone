@@ -23,11 +23,11 @@ export class Journal extends Component {
       )
     } else {
     return (
-      <div role='container' className="Journal">
+      <div className="Journal">
         <Banner />
         <StaticBody />
         <Message />
-        <div role='container' className='userInputs'>
+        <div role='form' className='userInputs'>
           <Login />
           <Register />
         </div>

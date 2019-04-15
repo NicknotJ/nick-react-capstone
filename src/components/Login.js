@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {reduxForm, Field } from 'redux-form';
 import {required, lengthRequirements, noWhiteSpace} from '../validators/user';
 import {userLogin} from '../actions/user';
-import {currentMoment, sevenDaysAgo, fourteenDaysAgo, oneMonthAgo, threeMonthsAgo, sixMonthsAgo, oneYearAgo } from '../time';
 
 
 const passwordLength = lengthRequirements({min: 7, max: 43});
@@ -20,15 +19,15 @@ export class Login extends Component{
     }
     render() {
     return(
-        <div role="container" className="loginContainer">
-          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))} role='login'>
+        <div className="loginContainer">
+          <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
             <fieldset>
               <legend>Login Form</legend>
                 <h3>Login</h3>
-                <label htmlFor='username'>Username</label>
-                <Field component={Input} type='username' name='username' element='input' validate={[required, usernameLength, noWhiteSpace]} />
-                <label htmlFor='password'>Password</label>
-                <Field component={Input} type='password' name='password' element='input' validate={[required, passwordLength, noWhiteSpace]} />
+                <label htmlFor='username-login'>UserName</label>
+                <Field component={Input} id='username-login' type='username' name='username' element='input' validate={[required, usernameLength, noWhiteSpace]} />
+                <label htmlFor='password-login'>Password</label>
+                <Field component={Input} id='password-login' type='password' name='password' element='input' validate={[required, passwordLength, noWhiteSpace]} />
                 <button type='submit' disabled={this.props.loading}>Confirm</button>
             </fieldset>
           </form>

@@ -23,9 +23,9 @@ export class LandingPage extends Component{
             <h2>Your Online Pain Journal</h2>
             <h3>Easily Record and View Your Pain Data in 2-3 Clicks</h3>
           </header>
-          <div role='container' className='landingImageCopy'>
+          <div role='region' className='landingImageCopy'>
             <img className='test' onClick={e => {this.onClick()}} alt='Click me to enter the site' src={this.imgSource()} /> 
-            <div role='container' className='landingInformation'>
+            <div className='landingInformation'>
               <p>Tired of writing down all your nagging pains?</p>
               <p>Then you'll love "Ouch, My Everything!"</p>
               <p>Click on the body, then on a rating button. You're already done!</p>

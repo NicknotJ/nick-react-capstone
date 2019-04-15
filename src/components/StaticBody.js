@@ -24,7 +24,7 @@ export class StaticBody extends Component{
     }
   displayText(){
     if(this.props.tutorial === 0){
-      return (<h1>Brief Tutorial for "Ouch, My Everything"</h1>)
+      return (<h3>Brief Tutorial for "Ouch, My Everything"</h3>)
     } else if(this.props.tutorial === 1){
       return (<h3>First, create a new user or login!</h3>);
     } else if(this.props.tutorial === 2){
@@ -46,11 +46,11 @@ export class StaticBody extends Component{
 
 render(){
 return (
-  <div role='container' className='imgContainer'>
+  <section className='imgContainer'>
     {this.displayText()}
-    <img onClick={e => {this.props.dispatch(tutorialClick(1))}} alt='Static Image of Human Body' className='tutorialImage' src={this.displayImage()}/>
+    <img onClick={e => {this.props.dispatch(tutorialClick(1))}} alt='Click for the Tutorial!' className='tutorialImage' src={this.displayImage()}/>
     {this.tutorialText()}
-  </div>
+  </section>
   )
 }
 }

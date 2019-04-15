@@ -1,5 +1,4 @@
 import jwtDecode from 'jwt-decode';
-import {SubmissionError} from 'redux-form';
 import {API_BASE_URL} from '../config';
 
 import {saveToken, clearToken} from '../local-storage';
@@ -21,7 +20,6 @@ export const authRequest = () => ({
 });
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-//username? 
 export const authSuccess = username => ({
     type: AUTH_SUCCESS,
     username

@@ -6,7 +6,7 @@ export default function Banner(props){
     return (    
     <header role="banner" className='banner'>
           <h1>Ouch, My Everything!</h1>
-          <h3>An Online Pain Journal</h3>
+          <h2>An Online Pain Journal</h2>
     </header>
     )
 }

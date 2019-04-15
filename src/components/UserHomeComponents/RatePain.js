@@ -5,7 +5,7 @@ export function RatePain(props){
 
 
     return (
-        <div role='rate-pain'>
+        <div>
             <button onClick={e => {props.handleSubmit(e, 1)}} type='submit' disabled={!props.addPain} value='1'>1</button>
             <button onClick={e => {props.handleSubmit(e, 2)}} type='submit' disabled={!props.addPain} value='2'>2</button>
             <button onClick={e => {props.handleSubmit(e, 3)}} type='submit' disabled={!props.addPain} value='3'>3</button>

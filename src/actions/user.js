@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '../config.js'
 //login and registration actions 
-import {setAuthToken, storeAuthInfo, clearAuth} from './auth';
+import {storeAuthInfo, clearAuth} from './auth';
 import {clearToken} from '../local-storage';
 
 export const USER_REQUEST = 'USER_LOGIN_REQUEST';

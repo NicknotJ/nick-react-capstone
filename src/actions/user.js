@@ -41,7 +41,11 @@ export const userLogin = user => dispatch => {
     })
     //below is untested
     .catch(err => {
-        dispatch(userLoginError(err))
+        if(err === 'Unauthorized'){
+          dispatch(userLoginError('Username or Password is Incorrect'))
+        } else {
+          dispatch(userLoginError(err));
+        }
     })
 }
 export const USER_LOGOUT_REQUEST = 'USER_LOGOUT_REQUEST';

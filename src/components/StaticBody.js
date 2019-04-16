@@ -37,7 +37,7 @@ export class StaticBody extends Component{
   }
   tutorialText(){
     if(this.props.tutorial >= 4){
-      return (<h3>The tutorial is finished! Please register a new user</h3>)
+      return (<h3>The tutorial is finished! Please register a new user below</h3>)
     } else if(this.props.tutorial === 0){
       return (<h3>Click above to start the tutorial!</h3>);
     } else {return (<h3>Click above to continue tutorial!</h3>);

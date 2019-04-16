@@ -41,14 +41,14 @@ html{
     padding-right: 10px;
 }
 
-.landingImageCopy > p {
-    font-size: 20px;
+.landingInformation > p {
+    font-size: 24px;
 }
 
 @media only screen and (max-width: 500px){
     /*for mobile devices*/
-    .landingImageCopy > p {
-        font-size: 12px;
+    .landingInformation > p {
+        font-size: 18px;
     }
     .landingImageCopy {
         height: 500px;

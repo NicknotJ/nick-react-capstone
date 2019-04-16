@@ -45,7 +45,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     const token = getState().auth.authToken; //update to grabbing from local storage
     return fetch(`${API_BASE_URL}/auth/refresh`, {
         method: 'POST',
-        credentials: 'include',
+        // credentials: 'include',
         headers: {
             Authorization: `Bearer ${token}`
             //Cannot get a new token without providing an unexpired one

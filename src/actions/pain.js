@@ -38,7 +38,7 @@ export const submitPain = (pain, token) => dispatch => {
     dispatch(submitPainRequest())
     return fetch(`${API_BASE_URL}/pain`, {
       method: "POST",
-      credentials: 'include',
+    //   credentials: 'include',
       headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
@@ -79,7 +79,7 @@ export const requestPain = (token) => dispatch => {
     dispatch(submitPainRequest())
     return fetch(`${API_BASE_URL}/pain/`, {
       method: "GET",
-      credentials: 'include',
+    //   credentials: 'include',
       headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${token}`

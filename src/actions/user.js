@@ -26,7 +26,7 @@ export const userLogin = user => dispatch => {
     dispatch(userRequest());
     fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
-        credentials: 'include',
+        // credentials: 'include',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user)
     })
@@ -91,7 +91,7 @@ export const userRegister = newUser => dispatch => {
     clearToken();
     fetch(`${API_BASE_URL}/users`, {
         method: "POST",
-        credentials: 'include',
+        // credentials: 'include',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUser)
     })

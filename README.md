@@ -26,9 +26,9 @@ TechStack for the BackEnd: Node.js, Mongoose, and MongoDB (noSQL).
 
 The database lives over at MLab (https://mlab.com/welcome/)
 The server that handles client requests (user creation, login, pain data submission, and pain data requests) lives on Heroku.
-The client-app that handles the front-end (once it receives the data, it also handles the interpretation of said data) lives on Heroku (https://www.heroku.com/).
+The client-app that handles the front-end (once it receives the data, it also handles the interpretation of said data) lives on Netlify (https://www.netlify.com/).
 
-If you would like to use this app or are just curious about it, feel free to contact me at FrankyMcJay@gmail.com.
+If you would like to use this app or are just curious about it, feel free to contact me at NicknotJustin@gmail.com
 If you want to mess around with a user that has fake data added, please feel free to use username: Test1 password: password123
 If you're unsure of how the app works, there is a tutorial past the landing page. 
 

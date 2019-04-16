@@ -179,7 +179,7 @@ export class UserHome extends Component {
         if(!painData){
             return undefined
         } else if (painData > .9){
-            return ' .95)';
+            return ' .99)';
         } else if (painData > .75){
             return ' .8)';
         } else if (painData > .5){
@@ -333,7 +333,7 @@ export class UserHome extends Component {
         return (
             <div className='UserHome'>
                 <div className='dateViewContainer'>
-                    <h3>{this.props.username}'s Pain Journal</h3>
+                    <h1>{this.props.username}'s Pain Journal</h1>
                     <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                     <ViewButton front={this.state.front} handleClick={e => this.handleView(e)} />
                     {this.displayError()}

@@ -4,7 +4,9 @@ import './ChangeDate.css'
 export default function ChangeDate(props){
 
 return (
-        <select className='selectDate' onChange={e => {props.onDisplayChange(e)}}>
+      <div className = 'selectDateContainer'>
+        <label htmlFor="selectDate">Change Timespan:</label>
+        <select id="selectDate" name="selectDate" className='selectDate' onChange={e => {props.onDisplayChange(e)}}>
             <option>One Week</option>
             <option>Two Weeks</option>
             <option>One Month</option>
@@ -12,5 +14,6 @@ return (
             <option>Six Months</option>
             <option>One Year</option>
         </select>
+      </div>
     )
 }

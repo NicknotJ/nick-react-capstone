@@ -334,9 +334,8 @@ export class UserHome extends Component {
             <div className='UserHome'>
                 <div className='dateViewContainer'>
                     <h3>{this.props.username}'s Pain Journal</h3>
-                    <label hidden>Change Date</label>
-                    <ChangeDate name="changeDate" onDisplayChange={e => this.onDisplayDateChange(e)}/>
-                    <ViewButton handleClick={e => this.handleView(e)} />
+                    <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
+                    <ViewButton front={this.state.front} handleClick={e => this.handleView(e)} />
                     {this.displayError()}
                 </div>
                 <div className='ImageWrapperContainer'>

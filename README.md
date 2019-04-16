@@ -4,7 +4,10 @@ Ouch, My Everything is an online pain journal that allows you to record your pai
 
 The goal of the app is to allow users to easily keep track of pain and provide a quick snapshot view of where, how badly, and how long they have hurt over the past X days/months/year.
 
-As of February 15, 2019, the app is currently being hosted here: https://react-capstone-pain-journal.herokuapp.com/
+As of April 16, 2019, the app is currently being hosted here: 
+https://jovial-allen-c95d7e.netlify.com/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0fc64707-386d-4c04-b683-b1db2ad45145/deploy-status)](https://app.netlify.com/sites/jovial-allen-c95d7e/deploys)
 
 Image of the landing page:
 ![Image of Landing Page](https://github.com/thinkful-ei27/nick-react-capstone/blob/master/ReadMeLandingPage.png?raw=true)

@@ -112,7 +112,7 @@ export default (state = initialState, action) => {
     else if(action.type === USER_REGISTER_ERROR){
         return Object.assign({}, state, {
             loading: false,
-            message: 'Registration Failed. Please use a different name'
+            message: action.error
         })
     }
     else if(action.type === SUBMIT_PAIN_ERROR){

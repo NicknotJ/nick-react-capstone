@@ -42,9 +42,13 @@ export const userLogin = user => dispatch => {
     //below is untested
     .catch(err => {
         if(err === 'Unauthorized'){
-          dispatch(userLoginError('Username or Password is Incorrect'))
+          dispatch(userLoginError('Username or Password is Incorrect'));
+        } else if(err.message === 'Failed to fetch') {
+          dispatch(userLoginError('The server is currently offline. Please try again later'));
+        } else if(err.message){
+          dispatch(userLoginError(err.message));
         } else {
-          dispatch(userLoginError(err));
+          dispatch(userLoginError('Something went wrong. Please try again later'));
         }
     })
 }
@@ -96,7 +100,11 @@ export const userRegister = newUser => dispatch => {
         dispatch(userRegisterSuccess())
     })
     .catch(err => {
+        if(err.message === 'Failed to fetch'){
+          dispatch(userRegisterError('The server is currently offline. Please try again later'))
+        } else {
         dispatch(userRegisterError(err))
+        }
 })
 }
 

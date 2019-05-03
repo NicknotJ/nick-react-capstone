@@ -33,7 +33,7 @@ html{
 
 .landingImageCopy > img {
     float: right;
-    width: 70%;
+    width: 68%;
     padding: 5px;
     background-color: rgb(224, 235, 255);
 }
@@ -52,7 +52,7 @@ html{
         font-size: 18px;
     }
     .landingImageCopy {
-        height: 500px;
+        height: 550px;
     }
     .landingImageCopy > img {
         width: 60%;

@@ -1,9 +1,9 @@
 .loginContainer {
     display: inline-block;
-    background-color: #AAFEB5;
+    background-color: rgb(224, 235, 255);;
     text-align: center;
     width: 40%;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     box-shadow: 1px 1px 1px 1px #10101A;
     padding: 5px;
 }
@@ -19,4 +19,14 @@ input {
 
 button{
     margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 500px) {
+    .loginContainer {
+      order: 1;
+      position: relative;
+      width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 }

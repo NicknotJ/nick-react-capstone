@@ -17,3 +17,12 @@
     margin-left: auto;
     border-radius: 5px;
 }
+
+
+@media only screen and (max-width: 390px) {
+    .viewButtonContainer {
+        margin-bottom: 5px;
+        margin-top: 0px;
+    }
+    
+  }

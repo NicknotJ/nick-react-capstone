@@ -23,14 +23,16 @@ export class Journal extends Component {
       )
     } else {
     return (
-      <div className="Journal">
+      <div>
         <Banner />
-        <StaticBody />
-        <Message />
-        <div role='form' className='userInputs'>
-          <Login />
-          <Register />
-        </div>
+        <main className="Journal">
+          <StaticBody />
+          <Message />
+          <section className='userInputs'>
+            <Login />
+            <Register />
+          </section>
+        </main>
       </div>
     );
   }}

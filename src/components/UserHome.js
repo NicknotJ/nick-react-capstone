@@ -331,14 +331,14 @@ export class UserHome extends Component {
     render(){
         
         return (
-            <div className='UserHome'>
-                <div className='dateViewContainer'>
+            <main className='UserHome'>
+                <section className='dateViewContainer'>
                     <h1>{this.props.username}'s Pain Journal</h1>
                     <ChangeDate onDisplayChange={e => this.onDisplayDateChange(e)}/>
                     <ViewButton front={this.state.front} handleClick={e => this.handleView(e)} />
                     {this.displayError()}
-                </div>
-                <div className='ImageWrapperContainer'>
+                </section>
+                <section className='ImageWrapperContainer'>
                     {this.loadingImg()}
                     <div className='ratePainWrapper'>
                       <p>Click on the Image to Select Pain Location</p>
@@ -347,8 +347,8 @@ export class UserHome extends Component {
                       <p>The Scale is from 1 (weakest) to 5 (strongest)</p>
                     </div>
                     <LogOut handleClick={e => this.handleLogout(e)} />
-                </div>
-            </div>
+                </section>
+            </main>
         )
     }
 }

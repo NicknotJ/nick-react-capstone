@@ -3,13 +3,13 @@ header {
     top: 10px;
     height: 20%;
     padding-top: 10px;
-    background-color: #FFE1AB;
+    background-color: rgb(224, 235, 255);
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 1px 1px 2px 1px #10101A;
+    box-shadow: 1px 1px 2px 1px rgb(149, 162, 185);
     border-radius: 5px;
   }

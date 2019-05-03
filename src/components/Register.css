@@ -1,7 +1,7 @@
 .registerContainer {
     position: absolute;
     display: inline-block;
-    background-color: #AAFEB5;
+    background-color: rgb(224, 235, 255);;
     text-align: center;
     width: 40%;
     right: 0px;
@@ -22,4 +22,14 @@ input {
 
 button{
     margin-bottom: 5%;
+}
+
+@media only screen and (max-width: 500px) {
+    .registerContainer {
+      order: 2;
+      position: relative;
+      width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 }

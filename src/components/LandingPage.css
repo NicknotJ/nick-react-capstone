@@ -1,27 +1,28 @@
 
 html{
-    background-color: #B2CEFE;
+    background-color: #FFFFFF;
 }
 
 .landingPageWrapper{
-    background-color: #B2CEFE;
+    background-color: #FFFFFF;
     height: 100%;
     width: 100%;
+    font-family: sans-serif;
 }
 
 .landingPageWrapper > header {
-    background-color: #FFE1AB
+    background-color: rgb(224, 235, 255);
 }
 
 .landingImageCopy {
     width: 90%;
     max-width: 600px;
     position: relative;
-    background-color: #D7B0FE;
+    background-color: rgb(224, 235, 255);
     margin-left: auto;
     margin-right: auto;
     padding: 5%;
-    box-shadow: 1px 1px 2px 1px #10101A;
+    box-shadow: 1px 1px 2px 1px rgb(149, 162, 185);
 }
 
 .landingImageCopy::after {
@@ -34,7 +35,7 @@ html{
     float: right;
     width: 70%;
     padding: 5px;
-    background-color: #B2CEFE;
+    background-color: rgb(224, 235, 255);
 }
 
 .landingInformation {

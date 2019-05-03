@@ -2,10 +2,10 @@
     display: block;
     margin: 15px auto;
     padding: 15px;
-    background-color: #D7B0FE;
+    background-color: rgb(224, 235, 255);
     width: 85%;
     height: 425px;
-    box-shadow: 1px 1px 1px 1px #10101A;
+    box-shadow: 1px 1px 1px 1px rgb(149, 162, 185);
     text-align: center;
     border-radius: 5px;
 }
@@ -24,7 +24,7 @@
 .imgContainer > h3 {
     position: relative;
     display: inline-block;
-    background-color: #EEEEEE;
+    background-color: #FFFFFF;
     padding: 3px;
     border: black solid 1px;
 }

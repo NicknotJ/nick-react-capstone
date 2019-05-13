@@ -17,6 +17,11 @@ input {
     margin-bottom: 5%;
 }
 
+legend {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 button{
     margin-bottom: 5%;
 }
